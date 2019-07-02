@@ -1,0 +1,19 @@
+<%= simple_form_for invoice, url: user_invoice_path(invoice.user, invoice), html: { class: "js-validate" }, wrapper: :front_form do |f| %>
+  <%= render "/@shared/forms/section_heading", title: "Invoice Details", subtitle: "Fill out the form below" %>
+  <%= render "/@shared/forms/error_messages", object: invoice %>
+
+  <div class="row">
+    <%= tag.div f.input(:ad_revenue, label: "Ad Revenue", as: :currency, currency: "$"), class: "col-md-6 mb-3" %>
+    <%= tag.div f.input(:ad_spend, label: "Ad Spend", as: :currency, currency: "$"), class: "col-md-6 mb-3" %>
+  </div>
+
+  <div class="row">
+    <%= tag.div f.input(:bonus_referral, label: "Bonus (Referral)", as: :currency, currency: "$"), class: "col-md-6 mb-3" %>
+    <%= tag.div f.input(:bonus_direct, label: "Bonus (Other)", as: :currency, currency: "$"), class: "col-md-6 mb-3" %>
+  </div>
+
+  <%= render "@shared/forms/button_panel" do %>
+    <%= f.submit "Save Invoice", class: "btn btn-sm btn-primary transition-3d-hover mr-1" %>
+    <%= link_to "Cancel", user_invoices_path(@user), class: "btn btn-sm btn-soft-secondary transition-3d-hover" %>
+  <% end %>
+<% end %>

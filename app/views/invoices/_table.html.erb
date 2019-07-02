@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class="js-datatable table table-borderless u-datatable u-datatable__striped u-datatable__trigger">
+    <thead>
+      <tr class="border-bottom">
+        <th scope="col">Month</th>
+        <th scope="col" class="text-right">Ad Revenue</th>
+        <th scope="col" class="text-right">Ad Spend</th>
+        <th scope="col" class="text-right">Referral Bonus</th>
+        <th scope="col" class="text-right">Other Bonus</th>
+        <th scope="col" class="text-right">Total Earned</th>
+        <th scope="col" class="text-right">Total Paid</th>
+      </tr>
+    </thead>
+    <tbody class="font-size-1">
+      <tr class="even">
+        <td class="align-middle"><%= Date.current.strftime("%b %Y") %></td>
+        <td class="text-right align-middle text-success"><%= @user.property_revenue(Date.today.at_beginning_of_month, Date.today).format %></td>
+        <td class="text-right align-middle text-black-10">-</td>
+        <td class="text-right align-middle text-black-10">-</td>
+        <td class="text-right align-middle text-black-10">-</td>
+        <td class="text-right align-middle text-black-10">-</td>
+        <td class="text-right align-middle bg-info">-</td>
+      </tr>
+      <%= render partial: "/invoices/tr", collection: invoices, as: :invoice %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between align-items-center">
+    <span><%== pagy_bootstrap_nav(pagy) if pagy.pages > 1 %></span>
+    <%= pagy_entries(pagy) %>
+  </div>
+</div>

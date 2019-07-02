@@ -1,3 +1,5 @@
+require "csv"
+
 KW_MAP = {
   "ABAP" => nil,
   "Ada" => nil,
@@ -89,5 +91,48 @@ namespace :migrate do
     end
 
     puts "Done!"
+  end
+
+  task invoices: :environment do
+    print "Importing invoices "
+    CSV.foreach(Rails.root.join("legacy/invoices.csv"), headers: true, encoding: "ISO-8859-1:UTF-8") do |row|
+      user = User.find(row["user_id"])
+      unless user
+        print "User not found (#{row["email"]})"
+        next
+      end
+
+      (Date.new(2018, 6)..Date.new(2019, 6)).select { |d| d.day == 1 }.each do |date|
+        paid_amount = Monetize.parse(row["#{date.strftime("%F")}_paid"])
+        if paid_amount > 0
+          invoice_payment = InvoicePayment.create!(
+            user_id: user.id,
+            payment_date: Date.coerce(date) + 1.month,
+            amount: paid_amount,
+            payment_method: "Imported",
+            details: row["#{date.strftime("%F")}_notes"]
+          )
+        end
+
+        invoice = user.invoices.for_date(date).first
+        invoice ||= Invoice.new
+
+        invoice.user_id = user.id
+        invoice.invoice_date = Date.coerce(date)
+        invoice.ad_revenue = Monetize.parse(row["#{date.strftime("%F")}_earned"])
+        invoice.ad_spend = Monetize.parse(row["#{date.strftime("%F")}_ads"])
+        invoice.bonus_direct = Monetize.parse(row["#{date.strftime("%F")}_bonus"])
+        invoice.bonus_referral = Monetize.parse(row["#{date.strftime("%F")}_referral"])
+        invoice.invoice_payment_id = invoice_payment&.id
+
+        unless invoice.save
+          puts "UH OH! #{invoice.errors.inspect}"
+          break
+        end
+      end
+
+      print "."
+    end
+    puts " Done!"
   end
 end

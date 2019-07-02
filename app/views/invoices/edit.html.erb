@@ -1,0 +1,18 @@
+<% content_for :breadcrumbs do %>
+  <%= render "/@shared/breadcrumbs/users" %>
+  <%= render "/@shared/breadcrumbs/user", user: @user %>
+  <%= render "/@shared/breadcrumbs/generic",
+        label: "Edit Invoice", link: edit_user_invoice_path(@user, @invoice), class: "active" %>
+<% end %>
+
+<% content_for :page_heading do %>
+  <%= page_heading "Editing", "Invoice",
+    subtitle: @invoice.invoice_date.to_s("by"),
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<main id="content" role="main" class="bg-light">
+  <div class="container space-1">
+    <%= render "/invoices/form", invoice: @invoice, user: @user %>
+  </div>
+</main>

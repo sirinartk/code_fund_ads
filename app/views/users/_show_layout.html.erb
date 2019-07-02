@@ -1,6 +1,10 @@
 <% content_for :breadcrumbs do %>
-  <%= render "/@shared/breadcrumbs/users" if authorized_user.can_admin_system? %>
-  <%= render "/@shared/breadcrumbs/user", user: user, class: "active" %>
+  <% if authorized_user.can_admin_system? %>
+    <%= render "/@shared/breadcrumbs/users" %>
+    <%= render "/@shared/breadcrumbs/user", user: user, class: "active" %>
+  <% else %>
+    &nbsp;
+  <% end %>
 <% end %>
 
 <% content_for :actions do %>
@@ -21,22 +25,24 @@
 <main id="content" role="main" class="bg-light">
   <div class="container space-1">
     <% if authorized_user.can_admin_system? %>
-    <ul class="nav nav-classic">
-      <%= tag.li(active_link_to("Details", user_path(user), active: :exact,
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Properties", user_properties_path(user),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link"))  %>
-      <%= tag.li(active_link_to("Campaigns", user_campaigns_path(user),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Comments", user_comments_path(user),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Events", user_events_path(user),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Revisions", user_versions_path(user),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    </ul>
+      <ul class="nav nav-classic">
+        <%= tag.li(active_link_to("Details", user_path(user), active: :exact,
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+        <%= tag.li(active_link_to("Earnings", user_invoices_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+        <%= tag.li(active_link_to("Properties", user_properties_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link"))  %>
+        <%= tag.li(active_link_to("Campaigns", user_campaigns_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+        <%= tag.li(active_link_to("Comments", user_comments_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+        <%= tag.li(active_link_to("Events", user_events_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+        <%= tag.li(active_link_to("Revisions", user_versions_path(user),
+          data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+      </ul>
     <% end %>
-    <div class="<%= 'bg-white border p-4' if authorized_user.can_admin_system? %>">
+    <div class="bg-white p-4 <%= "border" if authorized_user.can_admin_system? %>">
       <%= yield %>
     </div>
   </div>

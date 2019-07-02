@@ -3,6 +3,7 @@ date_formats = {
   "yyyy_mm" => "%Y_%m",
   "abdy" => "%a, %b %-d, %Y",
   "bd" => "%b %-d",
+  "by" => "%b %Y",
   "bdy" => "%b %-d, %Y",
 }
 

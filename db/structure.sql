@@ -546,6 +546,85 @@ DEFAULT;
 
 
 --
+-- Name: invoice_payments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.invoice_payments (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    payment_date date NOT NULL,
+    payment_method character varying NOT NULL,
+    amount_cents integer DEFAULT 0 NOT NULL,
+    amount_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    payment_transaction_id character varying,
+    paid_by character varying,
+    details text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: invoice_payments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.invoice_payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: invoice_payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.invoice_payments_id_seq OWNED BY public.invoice_payments.id;
+
+
+--
+-- Name: invoices; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.invoices (
+    id bigint NOT NULL,
+    user_id bigint,
+    invoice_payment_id bigint,
+    invoice_date date,
+    ad_revenue_cents integer DEFAULT 0 NOT NULL,
+    ad_revenue_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    ad_spend_cents integer DEFAULT 0 NOT NULL,
+    ad_spend_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    bonus_referral_cents integer DEFAULT 0 NOT NULL,
+    bonus_referral_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    bonus_direct_cents integer DEFAULT 0 NOT NULL,
+    bonus_direct_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: invoices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.invoices_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: invoices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.invoices_id_seq OWNED BY public.invoices.id;
+
+
+--
 -- Name: job_postings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1105,6 +1184,20 @@ ALTER TABLE ONLY public.impressions_default ALTER COLUMN uplift SET DEFAULT fals
 
 
 --
+-- Name: invoice_payments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.invoice_payments ALTER COLUMN id SET DEFAULT nextval('public.invoice_payments_id_seq'::regclass);
+
+
+--
+-- Name: invoices id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.invoices ALTER COLUMN id SET DEFAULT nextval('public.invoices_id_seq'::regclass);
+
+
+--
 -- Name: job_postings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1261,6 +1354,22 @@ ALTER TABLE ONLY public.email_templates
 
 ALTER TABLE ONLY public.events
     ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: invoice_payments invoice_payments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.invoice_payments
+    ADD CONSTRAINT invoice_payments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: invoices invoices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.invoices
+    ADD CONSTRAINT invoices_pkey PRIMARY KEY (id);
 
 
 --
@@ -1810,6 +1919,34 @@ CREATE INDEX index_events_on_eventable_id_and_eventable_type ON public.events US
 --
 
 CREATE INDEX index_events_on_user_id ON public.events USING btree (user_id);
+
+
+--
+-- Name: index_invoice_payments_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_invoice_payments_on_user_id ON public.invoice_payments USING btree (user_id);
+
+
+--
+-- Name: index_invoices_on_invoice_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_invoices_on_invoice_date ON public.invoices USING btree (invoice_date);
+
+
+--
+-- Name: index_invoices_on_invoice_payment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_invoices_on_invoice_payment_id ON public.invoices USING btree (invoice_payment_id);
+
+
+--
+-- Name: index_invoices_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_invoices_on_user_id ON public.invoices USING btree (user_id);
 
 
 --
@@ -2388,6 +2525,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190605172711'),
 ('20190605185105'),
 ('20190611183743'),
-('20190612154209');
+('20190612154209'),
+('20190702182157'),
+('20190702200653');
 
 

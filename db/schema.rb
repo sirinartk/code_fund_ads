@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_154209) do
+ActiveRecord::Schema.define(version: 2019_07_02_200653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -286,6 +286,39 @@ ActiveRecord::Schema.define(version: 2019_06_12_154209) do
     t.index ["property_id"], name: "impressions_default_property_id_idx"
     t.index ["province_code"], name: "impressions_default_province_code_idx"
     t.index ["uplift"], name: "impressions_default_uplift_idx"
+  end
+
+  create_table "invoice_payments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "payment_date", null: false
+    t.string "payment_method", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.string "payment_transaction_id"
+    t.string "paid_by"
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_invoice_payments_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "invoice_payment_id"
+    t.date "invoice_date"
+    t.integer "ad_revenue_cents", default: 0, null: false
+    t.string "ad_revenue_currency", default: "USD", null: false
+    t.integer "ad_spend_cents", default: 0, null: false
+    t.string "ad_spend_currency", default: "USD", null: false
+    t.integer "bonus_referral_cents", default: 0, null: false
+    t.string "bonus_referral_currency", default: "USD", null: false
+    t.integer "bonus_direct_cents", default: 0, null: false
+    t.string "bonus_direct_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_date"], name: "index_invoices_on_invoice_date"
+    t.index ["invoice_payment_id"], name: "index_invoices_on_invoice_payment_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "job_postings", force: :cascade do |t|
