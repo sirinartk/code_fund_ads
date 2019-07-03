@@ -1,0 +1,14 @@
+<% content_for :breadcrumbs do %>
+  <%= render "/@shared/breadcrumbs/generic",
+        label: "Payments", link: user_invoice_payments_path(current_user), class: "active" %>
+<% end %>
+
+<% content_for :page_heading do %>
+  <%= page_heading "Publisher", "Payments",
+    subtitle: "Actual paid earnings from CodeFund",
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<div class="bg-white p-4">
+  <%= render "/invoice_payments/table", invoice_payments: @invoice_payments, pagy: @pagy %>
+</div>

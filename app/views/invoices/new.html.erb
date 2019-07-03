@@ -1,0 +1,9 @@
+<% content_for :page_heading do %>
+  <%= page_heading "Create", "Invoice",
+    subtitle: "Fill out the form below",
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<div class="bg-white p-4">
+  <%= render "/invoices/form", invoice: @invoice, user: @user %>
+</div>

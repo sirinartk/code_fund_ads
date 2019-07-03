@@ -3,7 +3,9 @@
 <% end %>
 
 <% content_for :actions do %>
-  <%= tag.li link_to("Create Campaign", new_campaign_path), class: "hd-doc-section-nav-item" if authorized_user.can_admin_system? %>
+  <%= render "/@shared/date_range_picker" %>
+  <%= render "/@shared/actions/add_campaign" if authorized_user.can_admin_system? %>
+  <%= render "/@shared/actions/request_campaign" unless authorized_user.can_admin_system? %>
 <% end %>
 
 <% content_for :page_heading do %>

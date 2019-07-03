@@ -2,11 +2,21 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_administrator!, except: [:index]
   before_action :set_user
-  before_action :set_invoice, except: [:index]
+  before_action :set_invoice, except: [:index, :new, :create]
 
   def index
-    invoices = @user.invoices.order(invoice_date: :desc)
+    if authorized_user.can_admin_system?
+      invoices = @user.invoices.order(invoice_date: :desc)
+    else
+      invoices = current_user.invoices.order(invoice_date: :desc)
+    end
     @pagy, @invoices = pagy(invoices)
+
+    render "/invoices/for_user/index" if authorized_user.can_admin_system? && true_user == current_user
+  end
+
+  def new
+    @invoice = Invoice.new(user: @user)
   end
 
   def update

@@ -9,8 +9,6 @@
     icon: "fas fa-browser" %>
 <% end %>
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <%= render "/properties/form", property: @property %>
-  </div>
-</main>
+<div class="bg-white p-4">
+  <%= render "/properties/form", property: @property %>
+</div>

@@ -1,0 +1,14 @@
+<%= tag.tr class: classes("even": invoice_payment_counter.even?, "odd": invoice_payment_counter.odd?) do %>
+  <td class="align-middle">
+    <% if authorized_user.can_admin_system? %>
+      <%= link_to invoice_payment.payment_date.to_s("bdy"), edit_user_invoice_payment_path(invoice_payment.user, invoice_payment) %></td>
+    <% else %>
+      <%= invoice_payment.payment_date.to_s("bdy") %></td>
+    <% end %>
+  </td>
+  <td class="text-right align-middle text-success"><%= invoice_payment.amount.format %></td>
+  <td class="text-center align-middle text-secondary"><%= invoice_payment.payment_method %></td>
+  <td class="text-center align-middle text-secondary"><%= invoice_payment.payment_transaction_id %></td>
+  <td class="text-center align-middle text-secondary"><%= invoice_payment.paid_by %></td>
+  <td class="text-left align-middle text-secondary"><%= invoice_payment.details %></td>
+<% end %>

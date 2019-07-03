@@ -1,0 +1,17 @@
+<% content_for :page_heading do %>
+  <%= page_heading "Publisher", "Payment",
+    subtitle: "#{@invoice_payment.payment_date.to_s("bdy")}",
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<div class="bg-white p-4">
+  <ul class="list-unstyled mb-0">
+    <%= details_li("Amount") { @invoice_payment.amount.format } %>
+    <%= details_li("Payee") { @invoice_payment.user.full_name } %>
+    <%= details_li("Date") { @invoice_payment.payment_date.to_s("bdy") } %>
+    <%= details_li("Method") { @invoice_payment.payment_method } %>
+    <%= details_li("Reference") { @invoice_payment.payment_transaction_id } %>
+    <%= details_li("Paid by") { @invoice_payment.paid_by } %>
+    <%= details_li("Details") { @invoice_payment.details } %>
+  </ul>
+</div>

@@ -422,13 +422,13 @@ h4:hover .anchorjs-link {
 .hd-doc-section-nav {
   position: sticky;
   top: 6.5rem;
-  border-left: 1px solid #e7eaf3;
-  padding-left: 1.5rem;
+  /* border-left: 1px solid #e7eaf3; */
+  /* padding-left: 1.5rem; */
   overflow-y: auto;
   list-style: none;
 }
 .hd-doc-section-nav ul {
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
   list-style: none;
 }
 .hd-doc-section-nav-item {

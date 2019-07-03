@@ -147,7 +147,8 @@ Rails.application.routes.draw do
 
   scope "/users/:user_id" do
     resources :campaigns, only: [:index], as: :user_campaigns
-    resources :invoices, only: [:index, :edit, :update], as: :user_invoices, path: "/earnings"
+    resources :invoices, as: :user_invoices, path: "/earnings"
+    resources :invoice_payments, as: :user_invoice_payments, path: "/payments"
     resources :properties, only: [:index], as: :user_properties
     resources :creatives, only: [:index], as: :user_creatives
     resources :versions, only: [:index], as: :user_versions, path: "/revisions"

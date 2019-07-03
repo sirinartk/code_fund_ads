@@ -86,6 +86,7 @@ class User < ApplicationRecord
   belongs_to :organization, optional: true
   belongs_to :referring_user, class_name: "User", foreign_key: "referring_user_id", optional: true
   has_many :invoices, dependent: :destroy
+  has_many :invoice_payments, dependent: :destroy
   has_many :job_postings, dependent: :destroy
   has_many :referred_applicants, class_name: "Applicant", foreign_key: "referring_user_id"
   has_many :referred_users, class_name: "User", foreign_key: "referring_user_id"

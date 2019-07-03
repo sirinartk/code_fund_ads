@@ -1,6 +1,14 @@
-<div class="mb-6">
-  <h1 class="font-weight-semi-bold"><%= [action, subject].join(" ") %></h1>
-  <% if local_assigns[:subtitle] %>
-    <p class="text-dark font-weight-normal mb-0" style="font-size: 1.125rem;"><%= subtitle %></p>
-  <% end %>
+<div class="row justify-content-between align-items-center mb-4">
+  <div class="col-sm-8 col-md-6">
+    <h1 class="h3 font-weight-semi-bold mb-0"><%= [action, subject].join(" ") %></h1>
+    <% if local_assigns[:subtitle] %>
+      <p class="text-dark font-weight-normal mb-0" style="font-size: 1.125rem;"><%= subtitle %></p>
+    <% end %>
+  </div>
+
+  <div class="col-sm-4 col-md-6 mb-3 mb-sm-0 text-sm-right">
+    <ul class="list-inline">
+      <%= yield :actions %>
+    </ul>
+  </div>
 </div>

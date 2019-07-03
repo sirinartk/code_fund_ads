@@ -23,17 +23,20 @@
   <!-- Sidebar Nav -->
   <nav id="navside-accordion" class="hs-docs-navside collapse">
     <div id="components" class="collapse show" data-parent="#navside-accordion">
+      
+      <div data-turbolinks-permanent>
+        <div id="codefund" style="height: 120px;">
+          <div class="font-size-1 text-muted text-center mt-3">Loading ethical ad...</div>
+        </div>
+        <script src="/properties/104/funder.js" async="async"></script>
+      </div>
+
       <% if authorized_user.can_admin_system? %>
         <span class="hs-docs-navside__title">Admin</span>
         <ul class="hs-docs-navside__links">
           <li><%= active_link_to "Dashboard", administrator_dashboards_path %></li>
           <li><%= active_link_to "Organizations", organizations_path %></li>
-          <li>
-            <%= active_link_to "Users", users_path, active: :exact %>
-            <ul>
-              <li><%= active_link_to "Invite User", new_user_invitation_path %></li>
-            </ul>
-          </li>
+          <li><%= active_link_to "Users", users_path %></li>
         </ul>
       <% end %>
 
@@ -41,27 +44,9 @@
         <span class="hs-docs-navside__title">Advertiser</span>
         <ul class="hs-docs-navside__links">
           <li><%= active_link_to "Dashboard", advertiser_dashboards_path %></li>
-          <li>
-            <%= active_link_to "Campaigns", campaigns_path, active: :exact %>
-            <% if authorized_user.can_admin_system? %>
-            <ul>
-              <li><%= active_link_to "New Campaign", new_campaign_path %></li>
-            </ul>
-            <% end %>
-          </li>
-          <li>
-            <%= active_link_to "Creatives", creatives_path, active: :exact %>
-            <ul>
-              <li><%= active_link_to "New Creative", new_creative_path %></li>
-            </ul>
-          </li>
-          <li>
-            <%= active_link_to "Images", images_path(current_user.to_gid_param) %>
-            <ul>
-              <%= tag.li link_to("Upload Images", new_creative_path) %>
-            </ul>
-          </li>
-          
+          <li><%= active_link_to "Campaigns", campaigns_path %></li>
+          <li><%= active_link_to "Creatives", creatives_path %></li>
+          <li><%= active_link_to "Images", images_path(current_user.to_gid_param) %></li>
         </ul>
       <% end %>
 
@@ -71,18 +56,14 @@
           <li><%= active_link_to "Dashboard", publisher_dashboards_path %></li>
           <li><%= active_link_to "Properties", properties_path %></li>
           <li><%= active_link_to "Earnings", user_invoices_path(current_user) %></li>
+          <li><%= active_link_to "Payments", user_invoice_payments_path(current_user) %></li>
         </ul>
       <% end %>
 
       <span class="hs-docs-navside__title">Profile</span>
       <ul class="hs-docs-navside__links">
-        <li>
-          <%= active_link_to "View Profile", user_path(current_user), active: :exact %>
-          <ul>
-            <li><%= active_link_to "Edit Profile", edit_user_path(current_user) %></li>
-            <li><%= active_link_to "Change Password", edit_user_passwords_path %></li>
-          </ul>
-        </li>
+        <li><%= active_link_to "View Profile", user_path(current_user), active: :exact %></li>
+        <li><%= active_link_to "Change Password", edit_user_passwords_path %></li>
         <li><%= active_link_to "Referrals", referrals_path %></li>
         <% if current_user != true_user %>
           <li><%= link_to "Back to #{true_user.first_name}", stop_user_impersonation_path %></li>
@@ -98,14 +79,17 @@
         <li><%= link_to "Blog", buttercms_blog_path %></li>
         <li><%= link_to "Team", page_path(:team) %></li>
         <li><%= link_to "Code", "https://github.com/gitcoinco/code_fund_ads" %></li>
+        <li><%= link_to "Changelog", "https://headwayapp.co/codefund-changelog" %></li>
         <li><%= link_to "Our Stack", "https://stackshare.io/codefund" %></li>
         <li><%= link_to "Status", "https://status.codefund.app" %></li>
         <li><%= link_to "Privacy Policy", "https://www.iubenda.com/privacy-policy/47597768" %></li>
         <li><%= link_to "Cookie Policy", "https://www.iubenda.com/privacy-policy/47597768/cookie-policy" %></li>
       </ul>
 
-      <a class="github-button" href="https://github.com/gitcoinco/code_fund_ads"
-        data-show-count="true" aria-label="Star gitcoinco/code_fund_ads on GitHub">Star</a>
+      <p class="small text-muted">
+        <small><%= Date.today.year %> &copy; Gitcoin, Inc.</small><br/>
+        <small>All Rights Reserved.</small>
+      </p>
     </div>
   </nav>
   <!-- End Sidebar Nav -->

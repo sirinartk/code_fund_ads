@@ -8,10 +8,10 @@
 <% end %>
 
 <% content_for :actions do %>
-  <li><%= link_to "Edit User", edit_user_path(user) %></li>
-  <% if user != current_user %>
-    <li><%= link_to "Masquerade as User", user_impersonation_path(user), method: :put %>
-  <% end %>
+  <%= render "/@shared/actions/generic", link: new_user_invoice_path(user), icon: "fa fa-plus" if controller_name == "invoices" %>
+  <%= render "/@shared/actions/generic", link: new_user_invoice_payment_path(user), icon: "fa fa-plus" if controller_name == "invoice_payments" %>
+  <%= render "/@shared/actions/edit_user", user: user %>
+  <%= render "/@shared/actions/masquerade_as_user", user: user if user != current_user %>
 <% end %>
 
 <% content_for :page_heading do %>
@@ -20,24 +20,22 @@
     icon: "fas fa-user-circle" %>
 <% end %>
 
-<% if authorized_user.can_admin_system? %>
-  <ul class="nav nav-classic">
-    <%= tag.li(active_link_to("Details", user_path(user), active: :exact,
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    <%= tag.li(active_link_to("Earnings", user_invoices_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    <%= tag.li(active_link_to("Properties", user_properties_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link"))  %>
-    <%= tag.li(active_link_to("Campaigns", user_campaigns_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    <%= tag.li(active_link_to("Comments", user_comments_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    <%= tag.li(active_link_to("Events", user_events_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    <%= tag.li(active_link_to("Revisions", user_versions_path(user),
-      data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-  </ul>
-<% end %>
-<div class="bg-white p-4 <%= "border" if authorized_user.can_admin_system? %>">
+<div class="bg-white border border-top-0 px-4 pt-2 pb-4">
+  <% if authorized_user.can_admin_system? %>
+    <ul class="nav nav-classic nav-borderless px-0 mb-4">
+      <%= tag.li(active_link_to("Details", user_path(user), active: :exact,
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+      <%= tag.li(active_link_to("Earnings", user_invoices_path(user),
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+      <%= tag.li(active_link_to("Payments", user_invoice_payments_path(user),
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+      <%= tag.li(active_link_to("Properties", user_properties_path(user),
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link"))  %>
+      <%= tag.li(active_link_to("Campaigns", user_campaigns_path(user),
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+      <%= tag.li(active_link_to("Revisions", user_versions_path(user),
+        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
+    </ul>
+  <% end %>
   <%= yield %>
 </div>

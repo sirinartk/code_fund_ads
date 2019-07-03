@@ -1,0 +1,3 @@
+<%= render layout: "/users/show_layout", locals: { user: @user } do %>
+  <%= render "/invoice_payments/table", invoice_payments: @invoice_payments, pagy: @pagy %>
+<% end %>

@@ -14,8 +14,6 @@
     icon: "fas fa-palette" %>
 <% end %>
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <%= render "/creatives/form", creative: @creative %>
-  </div>
-</main>
+<div class="bg-white p-4">
+  <%= render "/creatives/form", creative: @creative %>
+</div>

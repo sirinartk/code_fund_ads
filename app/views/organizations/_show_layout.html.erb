@@ -4,7 +4,8 @@
 <% end %>
 
 <% content_for :actions do %>
-  <%= link_to "Edit Organization", edit_organization_path(organization) %>
+  <%= render "/@shared/actions/add_organization_transaction", organization: organization if controller_name == "organization_transactions" %>
+  <%= render "/@shared/actions/edit_organization", organization: organization %>
 <% end %>
 
 <% content_for :page_heading do %>
@@ -12,14 +13,12 @@
     icon: "fas fa-building" %>
 <% end %>
 
-<ul class="nav nav-classic">
-  <%= tag.li(active_link_to("Details", organization, active: :exact, class: "nav-link")) %>
-  <%= tag.li(active_link_to("Members", organization_users_path(organization), class: "nav-link"))  %>
-  <%= tag.li(active_link_to("Transactions", organization_transactions_path(organization), class: "nav-link")) %>
-  <%= tag.li(active_link_to("Comments", organization_comments_path(organization), class: "nav-link")) %>
-  <%= tag.li(active_link_to("Events", organization_events_path(organization), class: "nav-link")) %>
-  <%= tag.li(active_link_to("Revisions", organization_versions_path(organization), class: "nav-link")) %>
-</ul>
-<div class="bg-white border p-4">
+<div class="bg-white border border-top-0 px-4 pt-2 pb-4">
+  <ul class="nav nav-classic nav-borderless px-0 mb-4">
+    <%= tag.li(active_link_to("Details", organization, active: :exact, class: "nav-link")) %>
+    <%= tag.li(active_link_to("Members", organization_users_path(organization), class: "nav-link"))  %>
+    <%= tag.li(active_link_to("Transactions", organization_transactions_path(organization), class: "nav-link")) %>
+    <%= tag.li(active_link_to("Revisions", organization_versions_path(organization), class: "nav-link")) %>
+  </ul>
   <%= yield %>
 </div>

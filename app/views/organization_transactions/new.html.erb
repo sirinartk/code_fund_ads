@@ -10,7 +10,9 @@
     icon: "fas fa-file-invoice-dollar" %>
 <% end %>
 
-<%= render "/organization_transactions/form",
-    organization: @organization,
-    organization_transaction: @organization_transaction,
-    url: organization_transactions_path(@organization) %>
+<div class="bg-white p-4">
+  <%= render "/organization_transactions/form",
+      organization: @organization,
+      organization_transaction: @organization_transaction,
+      url: organization_transactions_path(@organization) %>
+</div>

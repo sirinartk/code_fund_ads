@@ -29,18 +29,8 @@
     <%= render "/@shared/authenticated_header" %>
     <%= render "/@shared/left_sidebar" %>
     <main class="hs-docs-content space-2 space-top-xl-3 bg-light" role="main">
-      <div class="row">
-        <div class="col-xl-2 order-xl-2 d-none d-xl-inline-block">
-          <ul class="js-scroll-nav hd-doc-section-nav">
-            <%= yield :actions %>
-          </ul>
-        </div>
-        <%= yield :page_actions %>
-        <div class="col-xl-10 order-xl-1">
-          <%= yield :page_heading %>
-          <%= yield %>
-        </div>
-      </div>
+      <%= yield :page_heading %>
+      <%= yield %>
     </main>
 
     <!-- Target for dynamically generated modals -->

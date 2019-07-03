@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="js-datatable table table-borderless u-datatable u-datatable__striped u-datatable__trigger">
+    <thead>
+      <tr class="border-bottom">
+        <th scope="col">Date</th>
+        <th scope="col" class="text-right">Amount</th>
+        <th scope="col" class="text-center">Method</th>
+        <th scope="col" class="text-center">Reference</th>
+        <th scope="col" class="text-center">Payer</th>
+        <th scope="col" class="text-left">Details</th>
+      </tr>
+    </thead>
+    <tbody class="font-size-1">
+      <%= render partial: "/invoice_payments/tr", collection: invoice_payments, as: :invoice_payment %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-between align-items-center">
+    <span><%== pagy_bootstrap_nav(pagy) if pagy.pages > 1 %></span>
+    <%= pagy_entries(pagy) %>
+  </div>
+</div>
