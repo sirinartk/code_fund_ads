@@ -4,7 +4,7 @@
 <% end %>
 
 <% content_for :actions do %>
-  <%= render "/@shared/actions/edit_organization", organization: organization %>
+  <%= link_to "Edit Organization", edit_organization_path(organization) %>
 <% end %>
 
 <% content_for :page_heading do %>
@@ -12,24 +12,14 @@
     icon: "fas fa-building" %>
 <% end %>
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <ul class="nav nav-classic">
-      <%= tag.li(active_link_to("Details", organization, active: :exact,
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Members", organization_users_path(organization),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link"))  %>
-      <%= tag.li(active_link_to("Transactions", organization_transactions_path(organization),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Comments", organization_comments_path(organization),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Events", organization_events_path(organization),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-      <%= tag.li(active_link_to("Revisions", organization_versions_path(organization),
-        data: { turbolinks_persist_scroll: true, prefetch: true }, class: "nav-link")) %>
-    </ul>
-    <div class="bg-white border p-4">
-      <%= yield %>
-    </div>
-  </div>
-</main>
+<ul class="nav nav-classic">
+  <%= tag.li(active_link_to("Details", organization, active: :exact, class: "nav-link")) %>
+  <%= tag.li(active_link_to("Members", organization_users_path(organization), class: "nav-link"))  %>
+  <%= tag.li(active_link_to("Transactions", organization_transactions_path(organization), class: "nav-link")) %>
+  <%= tag.li(active_link_to("Comments", organization_comments_path(organization), class: "nav-link")) %>
+  <%= tag.li(active_link_to("Events", organization_events_path(organization), class: "nav-link")) %>
+  <%= tag.li(active_link_to("Revisions", organization_versions_path(organization), class: "nav-link")) %>
+</ul>
+<div class="bg-white border p-4">
+  <%= yield %>
+</div>

@@ -1,0 +1,113 @@
+<!-- ========== LEFT ========== -->
+<div class="js-scrollbar hs-docs-sidebar" data-controller="simple-bar">
+  <div class="d-flex justify-content-between py-2 py-xl-0">
+    <!-- Search -->
+    <span></span>
+    <!-- End Search -->
+
+    <!-- Responsive Toggle Button -->
+    <button class="btn btn-link hs-docs-sidebar__toggle" type="button"
+            data-toggle="collapse"
+            data-target="#navside-accordion"
+            aria-controls="navside-accordion"
+            aria-expanded="false"
+            aria-label="Toggle docs navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false">
+        <title>Menu</title>
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/>
+      </svg>
+    </button>
+    <!-- End Responsive Toggle Button -->
+  </div>
+
+  <!-- Sidebar Nav -->
+  <nav id="navside-accordion" class="hs-docs-navside collapse">
+    <div id="components" class="collapse show" data-parent="#navside-accordion">
+      <% if authorized_user.can_admin_system? %>
+        <span class="hs-docs-navside__title">Admin</span>
+        <ul class="hs-docs-navside__links">
+          <li><%= active_link_to "Dashboard", administrator_dashboards_path %></li>
+          <li><%= active_link_to "Organizations", organizations_path %></li>
+          <li>
+            <%= active_link_to "Users", users_path, active: :exact %>
+            <ul>
+              <li><%= active_link_to "Invite User", new_user_invitation_path %></li>
+            </ul>
+          </li>
+        </ul>
+      <% end %>
+
+      <% if authorized_user.can_advertise? %>
+        <span class="hs-docs-navside__title">Advertiser</span>
+        <ul class="hs-docs-navside__links">
+          <li><%= active_link_to "Dashboard", advertiser_dashboards_path %></li>
+          <li>
+            <%= active_link_to "Campaigns", campaigns_path, active: :exact %>
+            <% if authorized_user.can_admin_system? %>
+            <ul>
+              <li><%= active_link_to "New Campaign", new_campaign_path %></li>
+            </ul>
+            <% end %>
+          </li>
+          <li>
+            <%= active_link_to "Creatives", creatives_path, active: :exact %>
+            <ul>
+              <li><%= active_link_to "New Creative", new_creative_path %></li>
+            </ul>
+          </li>
+          <li>
+            <%= active_link_to "Images", images_path(current_user.to_gid_param) %>
+            <ul>
+              <%= tag.li link_to("Upload Images", new_creative_path) %>
+            </ul>
+          </li>
+          
+        </ul>
+      <% end %>
+
+      <% if authorized_user.can_publish? %>
+        <span class="hs-docs-navside__title">Publisher</span>
+        <ul class="hs-docs-navside__links">
+          <li><%= active_link_to "Dashboard", publisher_dashboards_path %></li>
+          <li><%= active_link_to "Properties", properties_path %></li>
+          <li><%= active_link_to "Earnings", user_invoices_path(current_user) %></li>
+        </ul>
+      <% end %>
+
+      <span class="hs-docs-navside__title">Profile</span>
+      <ul class="hs-docs-navside__links">
+        <li>
+          <%= active_link_to "View Profile", user_path(current_user), active: :exact %>
+          <ul>
+            <li><%= active_link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><%= active_link_to "Change Password", edit_user_passwords_path %></li>
+          </ul>
+        </li>
+        <li><%= active_link_to "Referrals", referrals_path %></li>
+        <% if current_user != true_user %>
+          <li><%= link_to "Back to #{true_user.first_name}", stop_user_impersonation_path %></li>
+        <% end %>
+        <li><%= link_to "Sign Out", destroy_user_session_path %></li>
+      </ul>
+
+      <span class="hs-docs-navside__title">About</span>
+      <ul class="hs-docs-navside__links">
+        <li><%= link_to "Home", root_path, active: :exact %></li>
+        <li><%= link_to "Advertisers", advertisers_path %></li>
+        <li><%= link_to "Publishers", publishers_path %></li>
+        <li><%= link_to "Blog", buttercms_blog_path %></li>
+        <li><%= link_to "Team", page_path(:team) %></li>
+        <li><%= link_to "Code", "https://github.com/gitcoinco/code_fund_ads" %></li>
+        <li><%= link_to "Our Stack", "https://stackshare.io/codefund" %></li>
+        <li><%= link_to "Status", "https://status.codefund.app" %></li>
+        <li><%= link_to "Privacy Policy", "https://www.iubenda.com/privacy-policy/47597768" %></li>
+        <li><%= link_to "Cookie Policy", "https://www.iubenda.com/privacy-policy/47597768/cookie-policy" %></li>
+      </ul>
+
+      <a class="github-button" href="https://github.com/gitcoinco/code_fund_ads"
+        data-show-count="true" aria-label="Star gitcoinco/code_fund_ads on GitHub">Star</a>
+    </div>
+  </nav>
+  <!-- End Sidebar Nav -->
+</div>
+<!-- ========== END LEFT ========== -->

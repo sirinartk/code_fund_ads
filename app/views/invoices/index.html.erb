@@ -10,10 +10,6 @@
 <% end %>
 
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <div class="bg-white p-4">
-      <%= render "/invoices/table", invoices: @invoices, pagy: @pagy %>
-    </div>
-  </div>
-</main>
+<div class="bg-white p-4">
+  <%= render "/invoices/table", invoices: @invoices, pagy: @pagy %>
+</div>

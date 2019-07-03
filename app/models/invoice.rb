@@ -48,6 +48,10 @@ class Invoice < ApplicationRecord
     ad_revenue - ad_spend + bonus_referral - bonus_direct
   end
 
+  def owed
+    total - (invoice_payment&.amount || 0)
+  end
+
   # protected instance methods ................................................
 
   # private instance methods ..................................................

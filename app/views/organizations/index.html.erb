@@ -12,13 +12,9 @@
     icon: "fas fa-building" %>
 <% end %>
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <%= render partial: "/organization_searches/form",
-               layout: "/@shared/collapsable_search_form",
-               locals: { search: @organization_search } %>
-    <div class="bg-white p-4">
-      <%= render "/organizations/table", organizations: @organizations, pagy: @pagy %>
-    </div>
-  </div>
-</main>
+<%= render partial: "/organization_searches/form",
+            layout: "/@shared/collapsable_search_form",
+            locals: { search: @organization_search } %>
+<div class="bg-white p-4">
+  <%= render "/organizations/table", organizations: @organizations, pagy: @pagy %>
+</div>

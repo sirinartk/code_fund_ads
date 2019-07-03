@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   impersonates :user
 
+  layout :layout_by_authentication_status
+
   protected
 
   def device
@@ -33,6 +35,10 @@ class ApplicationController < ActionController::Base
       next if except.include?(key)
       session.delete key
     end
+  end
+
+  def layout_by_authentication_status
+    current_user ? "admin" : "application"
   end
 
   def set_cors_headers

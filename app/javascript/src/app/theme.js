@@ -5,7 +5,6 @@ import 'theme/vendor/appear';
 import 'theme/vendor/circles/circles.min';
 import 'theme/vendor/bootstrap-select/dist/js/bootstrap-select';
 import 'theme/vendor/hs-megamenu/src/hs.megamenu';
-import 'theme/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar';
 import 'theme/vendor/jquery-validation/dist/jquery.validate.min';
 import 'theme/vendor/fancybox/jquery.fancybox.min';
 import 'theme/vendor/typed.js/lib/typed.min';
@@ -22,7 +21,6 @@ import 'theme/js/hs.core';
 // theme components
 import 'theme/js/components/hs.header';
 import 'theme/js/components/hs.unfold';
-import 'theme/js/components/hs.malihu-scrollbar';
 import 'theme/js/components/hs.validation';
 import 'theme/js/components/hs.fancybox';
 import 'theme/js/components/hs.slick-carousel';
@@ -45,7 +43,6 @@ document.addEventListener('turbolinks:load', () => {
   jQuery.HSCore.components.HSHeader.init(jQuery('#header'));
   jQuery.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'));
   jQuery.HSCore.components.HSGoTo.init('.js-go-to');
-  jQuery.HSCore.components.HSMalihuScrollBar.init(jQuery('.js-scrollbar'));
   jQuery.HSCore.components.HSSVGIngector.init('.js-svg-injector');
   jQuery.HSCore.components.HSShowAnimation.init('.js-animation-link');
   jQuery.HSCore.components.HSFancyBox.init('.js-fancybox');

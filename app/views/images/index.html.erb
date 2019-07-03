@@ -12,11 +12,7 @@
     icon: "fas fa-images" %>
 <% end %>
 
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <%= render partial: "/image_searches/form",
-              layout: "/@shared/collapsable_search_form",
-              locals: { search: @image_search } %>
-    <%= render "/images/grid", imageable: @imageable, images: @images %>
-  </div>
-</main>
+<%= render partial: "/image_searches/form",
+          layout: "/@shared/collapsable_search_form",
+          locals: { search: @image_search } %>
+<%= render "/images/grid", imageable: @imageable, images: @images %>

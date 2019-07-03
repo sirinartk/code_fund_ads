@@ -12,28 +12,36 @@
     <!-- CDN -->
     <script src="https://kit.fontawesome.com/ca1224fb66.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600">
-    <link rel="stylesheet" href="/css/all.min.css">
 
     <!-- Compressed Stylesheets -->
     <%= stylesheet_pack_tag 'code_fund', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <!-- Compressed JavaScripts -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'code_fund', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= tag.body data: {
+  <%= tag.body class: "bg-light", data: {
       filestack_key: ENV["FILESTACK_API_KEY"],
       hubspot_id: ENV["HUBSPOT_ID"],
       email: true_user&.email,
       referral_code: session[:referral_code] } do %>
-    <%= render "/@shared/skippy" %>
-    <%= render "/@shared/header" %>
-
-    <%= yield :page_heading %>
-    <%= yield %>
-    <%= render "/@shared/footer" %>
-    <%= render "/@shared/secondary" if current_user %>
+    <%= render "/@shared/authenticated_header" %>
+    <%= render "/@shared/left_sidebar" %>
+    <main class="hs-docs-content space-2 space-top-xl-3 bg-light" role="main">
+      <div class="row">
+        <div class="col-xl-2 order-xl-2 d-none d-xl-inline-block">
+          <ul class="js-scroll-nav hd-doc-section-nav">
+            <%= yield :actions %>
+          </ul>
+        </div>
+        <%= yield :page_actions %>
+        <div class="col-xl-10 order-xl-1">
+          <%= yield :page_heading %>
+          <%= yield %>
+        </div>
+      </div>
+    </main>
 
     <!-- Target for dynamically generated modals -->
     <div id="global-modal" class="modal fade"></div>

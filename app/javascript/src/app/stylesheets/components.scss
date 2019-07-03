@@ -191,29 +191,6 @@ tr.border-bottom td {
   border-bottom: 1px dotted #969696;
 }
 
-/* --- Remove after no longer beta */
-body:after {
-  content: 'beta';
-  position: fixed;
-  z-index: 9999;
-  width: 80px;
-  height: 25px;
-  background: #ee8e4a;
-  top: 7px;
-  left: -20px;
-  text-align: center;
-  font-size: 13px;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #fff;
-  line-height: 27px;
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-/* --- end Remove after no longer beta */
-
 .notify-badge {
   position: absolute;
   right: -7px;

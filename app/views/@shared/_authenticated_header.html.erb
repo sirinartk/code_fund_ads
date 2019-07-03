@@ -1,0 +1,82 @@
+<!-- ========== HEADER ========== -->
+<header id="header" class="u-header u-header--navbar-bg u-header--bg-transparent-xl u-header--sticky-top-xl u-header--starter">
+  <div class="u-header__section bg-primary">
+    <div id="logoAndNav" class="container-fluid">
+      <!-- Nav -->
+      <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space">
+        <div class="u-header--starter__logo">
+          <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-default u-header__navbar-brand-text-white" do %>
+            <%= image_tag "codefund-wg-full-256.svg", alt: "CodeFund", class: "js-svg-injector" %>
+          <% end %>
+
+
+          <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-collapsed" do %>
+            <%= image_tag "codefund-wg-full-256.svg", alt: "CodeFund", class: "js-svg-injector" %>
+          <% end %>
+
+          <!-- Responsive Toggle Button -->
+          <button type="button" class="navbar-toggler btn u-hamburger"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="navBar"
+                  data-toggle="collapse"
+                  data-target="#navBar">
+            <span id="hamburgerTrigger" class="u-hamburger__box">
+              <span class="u-hamburger__inner"></span>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+        </div>
+
+        <!-- Navigation -->
+        <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
+          <form data-controller="search-autocomplete" data-action="submit->search-autocomplete#submit" data-autocomplete-url="/search" data-min-length="2" class="search-autocomplete form-inline input-group input-group-sm shadow-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="docsSearch">
+                <span class="fas fa-search"></span>
+              </span>
+            </div>
+            <input type="search" id="search-input" class="form-control" placeholder="Search..." aria-label="Search..." data-target="search-autocomplete.input"/>
+            <input type="hidden" name="bird_id" data-target="search-autocomplete.hidden"/>
+            <ul data-target="search-autocomplete.results" class="list-group"></ul>
+          </form>
+
+          <ul class="navbar-nav u-header__navbar-nav">
+            <%= tag.li "", class: "nav-item u-header__nav-item", id: "headway-changelog" if ENV["HEADWAY_ID"].present? %>
+            <li class="nav-item u-header__nav-item">
+              <a class="nav-link u-header__nav-link" href="../../html/home/index.html">Live Preview</a>
+            </li>
+
+            <!-- Changelog -->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                data-event="hover"
+                data-animation-in="slideInUp"
+                data-animation-out="fadeOut"
+                data-position="left">
+              <a id="changelogMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">
+                v2.2
+              </a>
+
+              <ul class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 220px;" aria-labelledby="changelogMenu">
+                <li><a class="nav-link u-header__sub-menu-nav-link" href="../getting-started/changelog.html#version2_2">Latest (v2.2)</a></li>
+                <li class="dropdown-divider"></li>
+                <li><a class="nav-link u-header__sub-menu-nav-link" href="../getting-started/changelog.html#version2_1_1">v2.1.x</a></li>
+                <li><a class="nav-link u-header__sub-menu-nav-link" href="../getting-started/changelog.html#version1_3">v1.x</a></li>
+              </ul>
+            </li>
+            <!-- End Changelog -->
+
+            <li class="nav-item u-header__nav-last-item">
+              <a class="btn btn-sm btn-light transition-3d-hover" href="../../starter/index.html">
+                Get Started
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- End Navigation -->
+      </nav>
+      <!-- End Nav -->
+    </div>
+  </div>
+</header>
+<!-- ========== END HEADER ========== -->

@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ['input', 'hidden', 'results'];
 
   connect() {
-    this.initCommandK();
     this.reset();
     this.resultsTarget.hidden = true;
 
@@ -36,19 +35,6 @@ export default class extends Controller {
     this.inputTarget.removeEventListener('input', this.onInputChange);
     this.resultsTarget.removeEventListener('mousedown', this.onResultsMouseDown);
     this.resultsTarget.removeEventListener('click', this.onResultsClick);
-  }
-
-  initCommandK() {
-    document.addEventListener('keydown', e => {
-      if (e.metaKey && e.code === 'KeyK') {
-        // Prevent the default refresh event under WINDOWS system
-        event.preventDefault();
-        jQuery('#btn-search-toggle')
-          .data('HSUnfold')
-          .show();
-        this.searchInputElement.focus();
-      }
-    });
   }
 
   sibling(next) {
@@ -122,8 +108,7 @@ export default class extends Controller {
     this.resultsTarget.hidden = true;
   }
 
-  submit(event) {
-    event.preventDefault();
+  submit() {
     let globalId = this.hiddenTarget.value;
     if (globalId.length === 0) return;
 

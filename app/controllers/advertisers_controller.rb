@@ -1,4 +1,6 @@
 class AdvertisersController < ApplicationController
+  layout "application"
+
   def index
     @applicant = Applicant.new(role: "advertiser")
   end
