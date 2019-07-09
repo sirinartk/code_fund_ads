@@ -1,5 +1,5 @@
 class PricingsController < ApplicationController
-  layout "application"
+  layout "default"
 
   def show
     @base = Money.new((params[:base] || ENV.fetch("BASE_ECPM", 500)).to_i, "USD")

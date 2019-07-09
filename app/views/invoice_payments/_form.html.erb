@@ -24,7 +24,7 @@
   <div class="mb-3">
     <div class="js-form-message js-focus-state string optional">
       <label class="form-label text optional">Associated Invoices</label>
-      <% @user.invoices.with_transactions.order(invoice_date: :desc).each do |invoice| %>
+      <% @user.invoices.with_line_items.order(invoice_date: :desc).each do |invoice| %>
         <%= tag.div class: classes("form-check": true, "text-muted": invoice.invoice_payment) do %>
           <% if invoice.invoice_payment && invoice.invoice_payment_id != invoice_payment.id %>
             <input class="form-check-input" type="checkbox" disabled>

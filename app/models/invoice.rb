@@ -34,7 +34,7 @@ class Invoice < ApplicationRecord
   # scopes ....................................................................
   scope :for_date, ->(date) { where(invoice_date: Date.coerce(date)) }
   scope :without_invoice_payments, -> { where(invoice_payment_id: nil) }
-  scope :with_transactions, -> {
+  scope :with_line_items, -> {
     where.not(ad_revenue_cents: 0).or(
       Invoice.where(ad_spend_cents: 0).or(
         Invoice.where(bonus_referral_cents: 0).or(

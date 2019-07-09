@@ -1,5 +1,5 @@
 class WebsitesController < ApplicationController
-  layout "application"
+  layout "default"
 
   def index
     properties = Property.active.order(:name)

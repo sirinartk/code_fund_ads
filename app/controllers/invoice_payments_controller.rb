@@ -70,7 +70,7 @@ class InvoicePaymentsController < ApplicationController
         :details,
         invoice_ids: [] # virtual attribute used in after save callback
       ).tap do |whitelisted|
-        whitelisted[:payment_date] = Date.strptime(params[:invoice_payment][:payment_date], "%m/%d/%Y")
+        whitelisted[:payment_date] = Date.strptime(params[:invoice_payment][:payment_date], Date::DATE_FORMATS["mm/dd/yyyy"])
       end
   end
 end

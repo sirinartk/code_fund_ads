@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def layout_by_authentication_status
-    current_user ? "admin" : "application"
+    current_user ? "advanced" : "default"
   end
 
   def set_cors_headers

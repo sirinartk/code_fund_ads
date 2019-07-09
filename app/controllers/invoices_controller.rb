@@ -71,7 +71,7 @@ class InvoicesController < ApplicationController
       :bonus_referral,
       :bonus_direct
     ).tap do |whitelisted|
-      whitelisted[:invoice_date] = Date.strptime(params[:invoice][:invoice_date], "%m/%d/%Y")
+      whitelisted[:invoice_date] = Date.strptime(params[:invoice][:invoice_date], Date::DATE_FORMATS["mm/dd/yyyy"])
     end
   end
 end

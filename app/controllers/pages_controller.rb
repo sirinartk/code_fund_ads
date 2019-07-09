@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :verify_page, only: [:show]
-  layout "application"
+  layout "default"
 
   def index
     # To be a showcase publisher, an image must exist at app/assets/images/home/browser-#{short_name}.png
