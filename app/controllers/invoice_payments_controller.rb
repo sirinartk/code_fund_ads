@@ -2,17 +2,21 @@ class InvoicePaymentsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_administrator!, except: [:index, :show]
   before_action :set_user
-  before_action :set_invoice_payment, except: [:index]
+  before_action :set_invoice_payment, except: [:index, :new, :create]
 
   def index
-    if authorized_user.can_admin_system?
-      invoice_payments = @user.invoice_payments.order(payment_date: :desc)
+    invoice_payments = if authorized_user.can_admin_system?
+      @user.invoice_payments.order(payment_date: :desc)
     else
-      invoice_payments = current_user.invoice_payments.order(payment_date: :desc)
+      current_user.invoice_payments.order(payment_date: :desc)
     end
     @pagy, @invoice_payments = pagy(invoice_payments)
 
     render "/invoice_payments/for_user/index" if authorized_user.can_admin_system? && true_user == current_user
+  end
+
+  def new
+    @invoice_payment = InvoicePayment.new(user: @user)
   end
 
   def create
@@ -58,11 +62,13 @@ class InvoicePaymentsController < ApplicationController
   def invoice_payment_params
     params.require(:invoice_payment)
       .permit(
+        :user_id,
         :payment_method,
         :amount,
         :payment_transaction_id,
         :paid_by,
-        :details
+        :details,
+        invoice_ids: [] # virtual attribute used in after save callback
       ).tap do |whitelisted|
         whitelisted[:payment_date] = Date.strptime(params[:invoice_payment][:payment_date], "%m/%d/%Y")
       end

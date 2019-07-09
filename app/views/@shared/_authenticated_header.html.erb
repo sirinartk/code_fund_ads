@@ -1,6 +1,6 @@
 <!-- ========== HEADER ========== -->
-<header id="header" class="u-header u-header--navbar-bg u-header--bg-transparent-xl u-header--sticky-top-xl u-header--starter">
-  <div class="u-header__section bg-primary">
+<header id="header" class="bg-header u-header u-header--navbar-bg u-header--bg-transparent-xl u-header--sticky-top-xl u-header--starter">
+  <div class="u-header__section bg-header shadow">
     <div id="logoAndNav" class="container-fluid">
       <!-- Nav -->
       <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space">
@@ -10,7 +10,7 @@
           <% end %>
 
           <%= link_to root_path, class: "navbar-brand u-header__navbar-brand u-header__navbar-brand-center u-header__navbar-brand-collapsed" do %>
-            <%= image_tag "codefund-wg-512.svg", alt: "CodeFund", class: "js-svg-injector", class: "m-0", style: "height: 40px;" %>
+            <%= image_tag "codefund-wg-full-256.svg", alt: "CodeFund", class: "js-svg-injector", class: "m-0", style: "height: 40px;" %>
           <% end %>
 
           <!-- Responsive Toggle Button -->
@@ -63,17 +63,33 @@
             </li>
             <!-- End Network -->
 
-            <li class="list-inline-item">
-              <span id="sidebarNavToggler" class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1 target-of-invoker-has-unfolds" role="button" style="background-color: white;">
-                <span class="position-relative">
-                  <span class="u-sidebar--account__toggle-text"><%= current_user.name %></span>
-                  <%= user_avatar_image_tag(current_user, "u-sidebar--account__toggle-img") %>
-                  <% if current_user != true_user %>
-                    <span class="badge badge-xs badge-outline-danger badge-pos rounded-circle"></span>
-                  <% end %>
+            <!-- Network -->
+            <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                data-event="hover"
+                data-animation-in="slideInUp"
+                data-animation-out="fadeOut"
+                data-position="left">
+              <a id="userMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">
+                <span id="sidebarNavToggler" class="btn btn-xs btn-text-secondary u-sidebar--account__toggle-bg ml-1 target-of-invoker-has-unfolds" role="button" style="background-color: white;">
+                  <span class="position-relative">
+                    <span class="u-sidebar--account__toggle-text"><%= current_user.name %></span>
+                    <%= user_avatar_image_tag(current_user, "u-sidebar--account__toggle-img") %>
+                    <% if current_user != true_user %>
+                      <span class="badge badge-xs badge-outline-danger badge-pos rounded-circle"></span>
+                    <% end %>
+                  </span>
                 </span>
-              </span>
+              </a>
+
+              <ul class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 220px;" aria-labelledby="userMenu">
+                <% if current_user != true_user %>
+                  <li><%= link_to "Back to #{true_user.first_name}", stop_user_impersonation_path, class: "nav-link u-header__sub-menu-nav-link" %></li>
+                <% end %>
+                <li><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link u-header__sub-menu-nav-link" %></li>
+              </ul>
             </li>
+            <!-- End Network -->
+
           </ul>
         </div>
         <!-- End Navigation -->

@@ -24,7 +24,7 @@ module Users
       if country == "US"
         [city, region].join(", ")
       else
-        [city, country].join(", ")
+        city
       end
     end
   end

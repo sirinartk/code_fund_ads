@@ -28,10 +28,13 @@ class InvoicePayment < ApplicationRecord
   validates :payment_method, presence: true
 
   # callbacks .................................................................
+  after_save :update_associated_invoices
+
   # scopes ....................................................................
 
   # additional config (i.e. accepts_nested_attribute_for etc...) ..............
   monetize :amount_cents, numericality: true
+  attr_accessor :invoice_ids
 
   # class methods .............................................................
   class << self
@@ -42,4 +45,12 @@ class InvoicePayment < ApplicationRecord
   # protected instance methods ................................................
 
   # private instance methods ..................................................
+  private
+
+  def update_associated_invoices
+    assigned_invoice_ids = invoice_ids&.map(&:to_i) || []
+    current_invoice_ids = invoices.pluck(:id)
+    Invoice.where(id: assigned_invoice_ids - current_invoice_ids).update_all(invoice_payment_id: id)
+    Invoice.where(id: current_invoice_ids - assigned_invoice_ids).update_all(invoice_payment_id: nil)
+  end
 end

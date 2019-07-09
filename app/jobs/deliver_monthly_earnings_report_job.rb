@@ -7,7 +7,5 @@ class DeliverMonthlyEarningsReportJob < ApplicationJob
     invoice = user.invoices.for_date(date).first
     total_unpaid_earnings = user.invoices.includes(:invoice_payment).sum(&:owed)
     return unless invoice
-
-    
   end
 end

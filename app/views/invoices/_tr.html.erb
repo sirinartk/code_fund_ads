@@ -10,12 +10,18 @@
   <td class="text-right align-middle <%= invoice.ad_spend == 0 ? "text-black-10" : "text-danger" %>"><%= invoice.ad_spend.format %></td>
   <td class="text-right align-middle <%= invoice.bonus_referral == 0 ? "text-black-10" : "text-success" %>"><%= invoice.bonus_referral.format %></td>
   <td class="text-right align-middle <%= invoice.bonus_direct == 0 ? "text-black-10" : "text-success" %>"><%= invoice.bonus_direct.format %></td>
-  <td class="text-right align-middle <%= invoice.total == 0 ? "text-black-10" : "text-success" %>"><%= invoice.total.format %></td>
-  <td class="text-right align-middle bg-info">
+  <td class="text-right align-middle <%= invoice.total_amount == 0 ? "text-black-10" : "text-success" %>"><%= invoice.total_amount.format %></td>
+  <td class="text-right align-middle">
     <% if invoice.invoice_payment %>
       <%= link_to invoice.invoice_payment&.amount&.format, user_invoice_payment_path(invoice.user, invoice.invoice_payment), class: "text-dark text-link" %>
     <% else %>
       -
     <% end %>
   </td>
+  <%= tag.td invoice.owed_amount.format, class: classes(
+    "text-right align-middle": true,
+    "text-black-10": invoice.owed_amount == 0,
+    "text-success": invoice.owed_amount > 0,
+    "text-danger": invoice.owed_amount < 0
+  ) %>
 <% end %>

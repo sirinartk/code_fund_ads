@@ -1,0 +1,9 @@
+<% content_for :page_heading do %>
+  <%= page_heading "Record", "Payment",
+    subtitle: "Record a new payment",
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<div class="bg-white p-4">
+  <%= render "/invoice_payments/form", invoice_payment: @invoice_payment, user: @user %>
+</div>

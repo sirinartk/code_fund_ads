@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class InvoicePaymentsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -10,5 +10,4 @@ class InvoicePaymentsControllerTest < ActionDispatch::IntegrationTest
     get invoice_payments_show_url
     assert_response :success
   end
-
 end

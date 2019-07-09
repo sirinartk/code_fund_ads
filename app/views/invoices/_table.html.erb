@@ -8,7 +8,8 @@
         <th scope="col" class="text-right">Referral Bonus</th>
         <th scope="col" class="text-right">Other Bonus</th>
         <th scope="col" class="text-right">Total Earned</th>
-        <th scope="col" class="text-right">Total Paid</th>
+        <th scope="col" class="text-right">Paid</th>
+        <th scope="col" class="text-right">Owed</th>
       </tr>
     </thead>
     <tbody class="font-size-1">
@@ -19,7 +20,8 @@
         <td class="text-right align-middle text-black-10">-</td>
         <td class="text-right align-middle text-black-10">-</td>
         <td class="text-right align-middle text-black-10">-</td>
-        <td class="text-right align-middle bg-info">-</td>
+        <td class="text-right align-middle text-black-10">-</td>
+        <td class="text-right align-middle text-black-10">-</td>
       </tr>
       <%= render partial: "/invoices/tr", collection: invoices, as: :invoice %>
     </tbody>

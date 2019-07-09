@@ -23,13 +23,6 @@
   <!-- Sidebar Nav -->
   <nav id="navside-accordion" class="hs-docs-navside collapse">
     <div id="components" class="collapse show" data-parent="#navside-accordion">
-      
-      <div data-turbolinks-permanent>
-        <div id="codefund" style="height: 120px;">
-          <div class="font-size-1 text-muted text-center mt-3">Loading ethical ad...</div>
-        </div>
-        <script src="/properties/104/funder.js" async="async"></script>
-      </div>
 
       <% if authorized_user.can_admin_system? %>
         <span class="hs-docs-navside__title">Admin</span>
@@ -55,8 +48,10 @@
         <ul class="hs-docs-navside__links">
           <li><%= active_link_to "Dashboard", publisher_dashboards_path %></li>
           <li><%= active_link_to "Properties", properties_path %></li>
-          <li><%= active_link_to "Earnings", user_invoices_path(current_user) %></li>
-          <li><%= active_link_to "Payments", user_invoice_payments_path(current_user) %></li>
+          <% if authorized_user.can_admin_system? %>
+            <li><%= active_link_to "Earnings", user_invoices_path(current_user) %></li>
+            <li><%= active_link_to "Payments", user_invoice_payments_path(current_user) %></li>
+          <% end %>
         </ul>
       <% end %>
 
@@ -65,10 +60,6 @@
         <li><%= active_link_to "View Profile", user_path(current_user), active: :exact %></li>
         <li><%= active_link_to "Change Password", edit_user_passwords_path %></li>
         <li><%= active_link_to "Referrals", referrals_path %></li>
-        <% if current_user != true_user %>
-          <li><%= link_to "Back to #{true_user.first_name}", stop_user_impersonation_path %></li>
-        <% end %>
-        <li><%= link_to "Sign Out", destroy_user_session_path %></li>
       </ul>
 
       <span class="hs-docs-navside__title">About</span>

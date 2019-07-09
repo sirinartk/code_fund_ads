@@ -1,4 +1,5 @@
 require "csv"
+require "open-uri"
 
 KW_MAP = {
   "ABAP" => nil,
@@ -94,8 +95,20 @@ namespace :migrate do
   end
 
   task invoices: :environment do
+    puts "This is a destructive method. Do you want to delete all existing invoices and payments? [y/N]"
+    puts "This cannot be undone!"
+
+    exit_early "No action taken" unless yes?
+
+    InvoicePayment.destroy_all
+    Invoice.destroy_all
+
     print "Importing invoices "
-    CSV.foreach(Rails.root.join("legacy/invoices.csv"), headers: true, encoding: "ISO-8859-1:UTF-8") do |row|
+    url = ENV["MIGRATE_INVOICE_CSV_URL"]
+    return unless url.present?
+    csv_text = open(url)
+    csv = CSV.parse(csv_text, headers: true, encoding: "ISO-8859-1:UTF-8")
+    csv.each do |row|
       user = User.find(row["user_id"])
       unless user
         print "User not found (#{row["email"]})"
@@ -134,5 +147,16 @@ namespace :migrate do
       print "."
     end
     puts " Done!"
+  end
+
+  private
+
+  def yes?
+    !!(STDIN.gets.strip =~ /\Ay\z/i)
+  end
+
+  def exit_early(message)
+    puts message
+    exit 0
   end
 end

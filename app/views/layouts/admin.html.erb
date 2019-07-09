@@ -21,14 +21,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'code_fund', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= tag.body class: "bg-light", data: {
+  <%= tag.body data: {
       filestack_key: ENV["FILESTACK_API_KEY"],
       hubspot_id: ENV["HUBSPOT_ID"],
       email: true_user&.email,
       referral_code: session[:referral_code] } do %>
     <%= render "/@shared/authenticated_header" %>
     <%= render "/@shared/left_sidebar" %>
-    <main class="hs-docs-content space-2 space-top-xl-3 bg-light" role="main">
+    <main class="hs-docs-content space-2 space-top-xl-3" role="main">
       <%= yield :page_heading %>
       <%= yield %>
     </main>
@@ -39,6 +39,7 @@
     <%= noty_flash %>
     <%= headway_tag %>
     <%= hubspot_tag %>
+    <%= intercom_tag %>
     <%= ga_tag_manager_footer %>
   <% end %>
 </html>

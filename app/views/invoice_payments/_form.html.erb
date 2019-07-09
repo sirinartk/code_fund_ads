@@ -1,4 +1,6 @@
-<%= simple_form_for invoice_payment, url: user_invoice_payment_path(invoice_payment.user, invoice_payment), html: { class: "js-validate" }, wrapper: :front_form do |f| %>
+<%= simple_form_for [user, invoice_payment], html: { class: "js-validate" }, wrapper: :front_form do |f| %>
+  <%= f.text_field :user_id, value: user.id, hidden: true %>
+
   <%= render "/@shared/forms/section_heading", title: "Invoice Payment Details", subtitle: "Fill out the form below" %>
   <%= render "/@shared/forms/error_messages", object: invoice_payment %>
 
@@ -6,7 +8,7 @@
     <div class="col-md-6 mb-3">
       <%= f.input :payment_date, as: :string, label: "Payment Date", required: true,
             input_html: { class: "form-control", data: { controller: "select-date" },
-            value: invoice_payment.payment_date.to_s("mm/dd/yyyy") } %>
+            value: invoice_payment.payment_date&.to_s("mm/dd/yyyy") } %>
     </div>
     <%= tag.div f.input(:paid_by, label: "Payer"), class: "col-md-6 mb-3" %>
   </div>
@@ -18,6 +20,28 @@
 
   <%= tag.div f.input(:amount, label: "Amount", as: :currency, currency: "$"), class: "mb-3" %>
   <%= tag.div f.input(:details, label: "Details", as: :text), class: "mb-3" %>
+
+  <div class="mb-3">
+    <div class="js-form-message js-focus-state string optional">
+      <label class="form-label text optional">Associated Invoices</label>
+      <% @user.invoices.with_transactions.order(invoice_date: :desc).each do |invoice| %>
+        <%= tag.div class: classes("form-check": true, "text-muted": invoice.invoice_payment) do %>
+          <% if invoice.invoice_payment && invoice.invoice_payment_id != invoice_payment.id %>
+            <input class="form-check-input" type="checkbox" disabled>
+            <%= invoice.invoice_date.to_s("by") %> - <%= invoice.owed.format %>
+            <small>(paid <%= invoice.invoice_payment.amount.format %> on <%= link_to invoice.invoice_payment.payment_date.to_s("bdy"), user_invoice_payment_path(user, invoice.invoice_payment.id) %>)</small>
+          <% else %>
+            <input class="form-check-input" name="invoice_payment[invoice_ids][]"
+              type="checkbox" value="<%= invoice.id %>" id="invoice_<%= invoice.id %>"
+              <% if invoice.invoice_payment_id == invoice_payment.id %>checked="checked"<% end %>>
+            <label class="form-check-label" for="invoice_<%= invoice.id %>">
+              <%= invoice.invoice_date.to_s("by") %> - <%= invoice.owed.format %>
+            </label>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
   <%= render "@shared/forms/button_panel" do %>
     <%= f.submit "Save Invoice Payment", class: "btn btn-sm btn-primary transition-3d-hover mr-1" %>

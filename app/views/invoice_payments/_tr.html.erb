@@ -11,4 +11,9 @@
   <td class="text-center align-middle text-secondary"><%= invoice_payment.payment_transaction_id %></td>
   <td class="text-center align-middle text-secondary"><%= invoice_payment.paid_by %></td>
   <td class="text-left align-middle text-secondary"><%= invoice_payment.details %></td>
+  <td class="text-left align-middle text-secondary">
+    <% invoice_payment.invoices.each do |invoice| %>
+      <%= link_to invoice.id, user_invoice_path(invoice.user, invoice), class: "btn btn-outline-info btn-xs mb-1" %>
+    <% end %>
+  </td>
 <% end %>

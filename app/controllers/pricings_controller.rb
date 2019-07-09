@@ -1,8 +1,8 @@
 class PricingsController < ApplicationController
   layout "application"
-  
+
   def show
-    @base = Money.new((params[:base] || ENV.fetch("BASE_ECPM", 400)).to_i, "USD")
+    @base = Money.new((params[:base] || ENV.fetch("BASE_ECPM", 500)).to_i, "USD")
     @multiplier = params[:multiplier]
 
     @regions = {}

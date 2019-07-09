@@ -18,6 +18,16 @@ table {
   margin-top: 1rem;
 }
 
+.bg-header {
+  background: #0d023b url(<%= asset_path 'header-bg.png' %>);
+  background-position: cover;
+  background-repeat: no-repeat;
+}
+
+body {
+  background-color: #f2f6f9 !important;
+}
+
 /*------------------------------------
   Markup
 ------------------------------------*/
@@ -172,6 +182,7 @@ h4:hover .anchorjs-link {
   Content
 ------------------------------------*/
 .hs-docs-content {
+  background-color: #f2f6f9;
   padding-right: 1rem;
   padding-left: 1rem;
 }

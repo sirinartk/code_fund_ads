@@ -1,0 +1,123 @@
+<% content_for :page_heading do %>
+  <%= page_heading "Publisher", "Invoice",
+    subtitle: "#{@invoice.invoice_date.to_s("bdy")}",
+    icon: "fas fa-file-invoice-dollar" %>
+<% end %>
+
+<div class="card bg-img-hero" style="background-image: url(<%= asset_path("svg/components/bg-elements-6.svg") %>);">
+  <div class="card-body p-5 p-md-7 p-lg-11">
+    <div class="row justify-content-lg-between align-items-sm-center mb-11">
+      <div class="col-sm-6 col-lg-4 order-sm-2 text-sm-right mb-5 mb-sm-0">
+        <h1 class="h2 font-weight-medium mb-0">
+          Invoice #
+          <small class="d-block"><%= @invoice.id %></small>
+        </h1>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 order-sm-1">
+        <!-- Logo -->
+        <%= image_tag "gitcoin-logo.png", class: "mb-2", style: "width: 46px;" %>
+        <h2 class="h1 font-weight-semi-bold" style="color: #14003e;">Gitcoin, Inc.</h2>
+        <!-- End Logo -->
+
+        <!-- Address -->
+        <address>
+          49 Bogart St #22, Brooklyn, NY 11206<br/>United States
+        </address>
+        <!-- End Address -->
+      </div>
+    </div>
+
+    <!-- Bill To -->
+    <div class="row justify-content-md-between mb-7">
+      <div class="col-md-5 col-lg-4">
+        <h3 class="h5">For:</h3>
+        <span class="d-block"><%= @user.name %></span>
+        <address class="text-secondary mb-0">
+          <%= @user.address_1 %>, <%= @user.display_region %> <%= @user.postal_code %><br/>
+          <%= @user.country %>
+        </address>
+      </div>
+
+      <div class="col-md-5 col-lg-4 mt-6">
+        <dl class="row mb-0">
+          <dt class="col-5 col-md-6 font-weight-normal text-secondary">Invoice date:</dt>
+          <dd class="col-7 col-md-6 font-weight-medium"><%= @invoice.invoice_date.to_s("mm/dd/yyyy") %></dd>
+        </dl>
+        <dl class="row mb-0">
+          <dt class="col-5 col-md-6 font-weight-normal text-secondary">Due date:</dt>
+          <dd class="col-7 col-md-6 font-weight-medium"><%= (@invoice.invoice_date + 18.days).to_s("mm/dd/yyyy") %></dd>
+        </dl>
+        <% if @invoice_payment %>
+          <dl class="row mb-0">
+            <dt class="col-5 col-md-6 font-weight-normal text-secondary">Paid date:</dt>
+            <dd class="col-7 col-md-6 font-weight-medium"><%= @invoice_payment.payment_date.to_s("mm/dd/yyyy") %></dd>
+          </dl>
+        <% end %>
+      </div>
+    </div>
+    <!-- End Bill To -->
+
+    <!-- Table -->
+    <table class="table table-heighlighted font-size-1 mb-9">
+      <thead>
+        <tr class="text-uppercase text-secondary">
+          <th colspan="2" scope="col" class="font-weight-medium">Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="font-weight-normal">Ad Revenue</th>
+          <td class="text-right"><%= @invoice.ad_revenue.format %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="font-weight-normal">Referral Bonus</th>
+          <td class="text-right"><%= @invoice.bonus_referral.format %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="font-weight-normal">Extra Bonus</th>
+          <td class="text-right"><%= @invoice.bonus_direct.format %></td>
+        </tr>
+        <tr>
+          <th scope="row" class="font-weight-normal">Total Ad Spend</th>
+          <td class="text-right"><%= (@invoice.ad_spend * -1).format %></td>
+        </tr>
+        <tr>
+          <th style="border-color: black;" scope="row">Subtotal</th>
+          <td style="border-color: black;"class="font-weight-bold text-right"><%= @invoice.total_amount.format %></td>
+        </tr>
+        <% if @invoice_payment %>
+          <tr>
+            <th scope="row" class="font-weight-normal">Payment via <%= @invoice_payment.payment_method %> (<%= @invoice_payment.details %>)</th>
+            <td class="text-right"><%= (@invoice_payment.amount * -1).format %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr class="h6">
+          <td scope="row">Total Owed</td>
+          <td class="text-right"><%= @invoice.owed_amount.format %></td>
+        </tr>
+      </tfoot>
+    </table>
+    <!-- End Table -->
+
+    <!-- Contacts -->
+    <div class="row justify-content-lg-between">
+      <div class="col-md-8 col-lg-7 order-md-2 mb-5 mb-md-0">
+        <h4 class="h6">Thank you!</h4>
+        <p class="font-size-1">CodeFund is a service provided by Gitcoin, Inc. If you have any questions concerning this invoice, use the following contact information:</p>
+
+        <span class="d-block">
+          <small class="font-weight-medium">email:</small>
+          <small class="text-muted">team@codefund.io</small>
+        </span>
+      </div>
+
+      <div class="col-md-4 col-lg-3 order-md-1 align-self-end">
+        <p class="small text-muted mb-0">© 2018 Gitcoin, Inc.</p>
+      </div>
+    </div>
+    <!-- End Contacts -->
+  </div>
+</div>
