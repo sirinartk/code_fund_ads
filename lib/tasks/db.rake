@@ -25,4 +25,16 @@ namespace :db do
       exec "pg_restore --verbose --clean --no-acl --no-owner -h #{config[:host]} -d #{config[:database]} #{path}"
     end
   end
+
+  desc "Checks to see if the database exists"
+  task :exists do
+    begin
+      Rake::Task['environment'].invoke
+      ActiveRecord::Base.connection
+    rescue
+      exit 1
+    else
+      exit 0
+    end
+  end
 end
