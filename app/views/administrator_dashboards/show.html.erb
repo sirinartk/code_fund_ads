@@ -13,13 +13,15 @@
     <table data-controller="grid" data-page-size="12" data-grouping="organization">
       <thead>
         <tr>
-          <th id="organization"         data-field="organization"         data-type="string" data-sortable="true" data-filterable="true" data-groupable="true">Organization</th>
-          <th id="organization_balance" data-field="organization_balance" data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Balance</th>
-          <th id="campaign"             data-field="campaign"             data-type="string" data-sortable="true" data-filterable="true" data-groupable="false">Campaign</th>
-          <th id="total_budget_cap"     data-field="total_budget_cap"     data-type="number" data-sortable="true" data-filterable="true" data-groupable="true">Total Cap</th>
-          <th id="daily_budget_cap"     data-field="daily_budget_cap"     data-type="number" data-sortable="true" data-filterable="true" data-groupable="true">Daily Cap</th>
-          <th id="hourly_budget_cap"    data-field="hourly_budget_cap"    data-type="number" data-sortable="true" data-filterable="true" data-groupable="true">Hourly Cap</th>
-          <th id="remaining_budget"     data-field="remaining_budget"     data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Remaining $</th>
+          <th id="organization"         data-field="organization"         data-type="string" data-sortable="true"  data-filterable="true"  data-groupable="true">Organization</th>
+          <th id="organization_balance" data-field="organization_balance" data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="false">Balance</th>
+          <th id="campaign"             data-field="campaign_icon"        data-type="string" data-sortable="false" data-filterable="false" data-groupable="false">Image</th>
+          <th id="campaign"             data-field="campaign"             data-type="string" data-sortable="true"  data-filterable="true"  data-groupable="false">Campaign</th>
+          <th id="total_budget_cap"     data-field="total_budget_cap"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Total Cap</th>
+          <th id="daily_budget_cap"     data-field="daily_budget_cap"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Daily Cap</th>
+          <th id="hourly_budget_cap"    data-field="hourly_budget_cap"    data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Hourly Cap</th>
+          <th id="remaining_budget"     data-field="remaining_budget"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="false">Remaining $</th>
+          <th id="info"                 data-field="info"                 data-type="string" data-sortable="true"  data-filterable="false" data-groupable="true">Info</th>
         </tr>
       </thead>
       <tbody>
@@ -27,11 +29,21 @@
           <tr>
             <td><%= link_to campaign.organization.analytics_key, organization_path(campaign.organization) %></td>
             <td><%= campaign.organization.balance %></td>
+            <td><%= image_tag campaign.creative.small_image || "missing-200x200.png" %></td>
             <td><%= link_to campaign.analytics_key, campaign_path(campaign) %></td>
             <td><%= campaign.total_budget %></td>
             <td><%= campaign.daily_budget %></td>
             <td><%= campaign.hourly_budget %></td>
             <td><%= campaign.total_remaining_budget %></td>
+            <td>
+              <% if campaign.organization.balance < Monetize.parse("$250 USD") %>
+                <span class="uk-label uk-label-danger">Low Balance</span>
+              <% elsif campaign.total_remaining_budget_percentage <= 15 %>
+                <span class="uk-label uk-label-warning">Low Budget</span>
+              <% else %>
+                <span class="uk-label uk-label-success">Healthy</span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
