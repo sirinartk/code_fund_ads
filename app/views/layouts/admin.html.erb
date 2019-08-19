@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/ca1224fb66.js"></script>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
@@ -14,6 +16,7 @@
     <%= render "/@shared/admin/navbar" %>
     <%= render "/@shared/admin/breadcrumbs" %>
     <%= render "/@shared/admin/subnav" %>
+    <%= render "/@shared/admin/actions" if content_for?(:actions) || content_for?(:filters) %>
 
     <%= yield %>
 

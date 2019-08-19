@@ -1,4 +1,20 @@
-<%= render layout: "/campaigns/show_layout", locals: { campaign: @campaign } do %>
+<% content_for :breadcrumbs do %>
+  <%= render "/@shared/breadcrumbs/campaigns" %>
+  <%= render "/@shared/breadcrumbs/campaign", campaign: @campaign, class: "active" %>
+<% end %>
+
+<% content_for :subnav do %>
+  <%= render "/@shared/admin/subnav/campaign", campaign: @campaign %>
+<% end %>
+
+<% content_for :actions do %>
+  <%= render "/@shared/actions/edit_campaign", campaign: @campaign %>
+  <%= render "/@shared/actions/generic", link: new_campaign_path(clone: @campaign.id), icon: "fa fa-copy" %>
+  <%= render "/@shared/actions/add_campaign" if authorized_user.can_admin_system? %>
+  <%= render "/@shared/actions/request_campaign" unless authorized_user.can_admin_system? %>
+<% end %>
+
+<main id="content" role="main" class="uk-container uk-padding">
   <div class="row">
     <div class="col-md-6 col-lg-4">
       <%= render "/campaigns/card", campaign: @campaign %>
@@ -81,4 +97,4 @@
       </ul>
     </div>
   </div>
-<% end %>
+</main>

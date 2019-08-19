@@ -1,17 +1,25 @@
-<%= render layout: "/campaigns/show_layout", locals: { campaign: @campaign } do %>
-  <div class="mb-3">
-    <div class="d-inline-block float-right text-right">
-      <%= render "/campaign_reports/form", campaign: @campaign %>
-      <%= link_to campaign_countries_path(@campaign, format: :csv), class: "d-block mt-3 mb-2" do %>
-        Download
-      <% end %>
-    </div>
-
-    <h3 class="h5 mb-3">
-      Countries
-      <small class="text-muted d-block">Spend and statistics by country</small>
-    </h3>
-  </div>
-
-  <%= render "/campaign_countries/table" %>
+<% content_for :breadcrumbs do %>
+  <%= tag.li link_to "Campaigns", campaigns_path %>
+  <%= tag.li link_to "Campaign", campaign_path(@campaign) %>
+  <li><span>Analyze</span></li>
+  <li><span>Countries</span></li>
 <% end %>
+
+<% content_for :subnav do %>
+  <%= render "/@shared/admin/subnav/campaign_analyze", campaign: @campaign %>
+<% end %>
+
+<% content_for :filters do %>
+  <%= render "/@shared/date_range_picker" %>
+<% end %>
+
+<% content_for :actions do %>
+  <%= render "/campaign_reports/form", campaign: @campaign, email: @campaign.user.email %>
+  <%= link_to campaign_creatives_path(@campaign, format: :csv), class: "d-block mt-3 mb-2" do %>
+    Download
+  <% end %>
+<% end %>
+
+<main id="content" role="main" class="uk-container uk-padding">
+  <%= render "/campaign_countries/table" %>
+</main>

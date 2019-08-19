@@ -1,6 +1,5 @@
 class PropertiesController < ApplicationController
   include Sortable
-  layout "admin"
 
   before_action :authenticate_user!
   before_action :set_property_search, only: [:index]
