@@ -10,14 +10,12 @@
 
 <div class="uk-section">
   <div class="uk-container">
-    <table data-controller="grid">
+    <table data-controller="grid" data-page-size="12" data-grouping="organization">
       <thead>
         <tr>
-          <th id="organization_id"      data-field="organization_id"      data-type="number" data-sortable="true" data-filterable="true" data-groupable="true">Org ID</th>
-          <th id="organization_name"    data-field="organization_name"    data-type="string" data-sortable="true" data-filterable="true" data-groupable="true">Organization</th>
+          <th id="organization"         data-field="organization"         data-type="string" data-sortable="true" data-filterable="true" data-groupable="true">Organization</th>
           <th id="organization_balance" data-field="organization_balance" data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Balance</th>
-          <th id="campaign_id"          data-field="campaign_id"          data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Campaign ID</th>
-          <th id="campaign_name"        data-field="campaign_name"        data-type="string" data-sortable="true" data-filterable="true" data-groupable="false">Campaign</th>
+          <th id="campaign"             data-field="campaign"             data-type="string" data-sortable="true" data-filterable="true" data-groupable="false">Campaign</th>
           <th id="total_budget_cap"     data-field="total_budget_cap"     data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Total Cap</th>
           <th id="daily_budget_cap"     data-field="daily_budget_cap"     data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Daily Cap</th>
           <th id="hourly_budget_cap"    data-field="hourly_budget_cap"    data-type="number" data-sortable="true" data-filterable="true" data-groupable="false">Hourly Cap</th>
@@ -27,11 +25,9 @@
       <tbody>
         <% @active_campaigns.each do |campaign| %>
           <tr>
-            <td><%= campaign.organization_id %></td>
-            <td><%= campaign.organization.name %></td>
+            <td><%= link_to campaign.organization.analytics_key, organization_path(campaign.organization) %></td>
             <td><%= campaign.organization.balance %></td>
-            <td><%= campaign.id %></td>
-            <td><%= campaign.name %></td>
+            <td><%= link_to campaign.analytics_key, campaign_path(campaign) %></td>
             <td><%= campaign.total_budget %></td>
             <td><%= campaign.daily_budget %></td>
             <td><%= campaign.hourly_budget %></td>

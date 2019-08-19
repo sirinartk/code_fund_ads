@@ -15,6 +15,7 @@ class Organization < ApplicationRecord
 
   # includes ..................................................................
   include Organizations::Developable
+  include Organizations::Presentable
   include Eventable
 
   # relationships .............................................................
