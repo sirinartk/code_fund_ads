@@ -1,4 +1,6 @@
 @import './components/datatables.scss';
+@import './variables';
+@import '~uikit/src/scss/variables-theme.scss';
 
 #cf-navbar {
   background-color: #ffffff;
@@ -26,5 +28,39 @@
     margin-bottom: -1px;
     line-height: 2rem;
     margin-top: 0px;
+  }
+}
+
+#cf-actions {
+  margin-top: 1rem;
+  font-weight: bold;
+
+  .uk-button {
+    padding: 0 20px;
+    margin-left: 3px;
+  }
+
+  .uk-button-muted-primary {
+    background-color: #efefef;
+    &:hover {
+      background-color: $button-primary-background;
+      color: $button-primary-color;
+    }
+  }
+
+  .uk-button-muted-secondary {
+    background-color: #efefef;
+    &:hover {
+      background-color: $button-secondary-background;
+      color: $button-secondary-color;
+    }
+  }
+
+  .uk-button-muted-danger {
+    background-color: #efefef;
+    &:hover {
+      background-color: $button-danger-background;
+      color: $button-danger-color;
+    }
   }
 }

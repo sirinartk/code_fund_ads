@@ -1,19 +1,21 @@
-<%= render layout: "/campaigns/show_layout", locals: { campaign: @campaign } do %>
-  <div class="d-flex">
-    <h3 class="h5 mb-3 flex-grow-1">
-      Overview <sup><%= link_to tag.i("", class: "fas fa-external-link"), @iframe_url, target: "_blank", class: "color: blue" %></sup>
-      <small class="text-muted d-block">A mini-dashboard specifically for this campaign.</small>
-    </h3>
-  </div>
+<% content_for :breadcrumbs do %>
+  <%= render "/@shared/breadcrumbs/campaigns" %>
+  <%= render "/@shared/breadcrumbs/campaign", campaign: @campaign, class: "active" %>
+<% end %>
 
-  <small class="text-center d-block text-muted">
-    ensure ad blockers are disabled to view the overview
-  </small>
-  
+<% content_for :subnav do %>
+  <%= render "/@shared/admin/subnav/campaign", campaign: @campaign %>
+<% end %>
+
+<% content_for :filters do %>
+  <%= render "/@shared/date_range_picker" %>
+<% end %>
+
+<main id="content" role="main" class="uk-container uk-padding">
   <iframe
     src="<%= @iframe_url %>"
     style="width: 100%; min-height: 2000px; border: 0; resize: horizontal;"
     height="2000"
     scrolling="no"
     allowtransparency></iframe>
-<% end %>
+</main>

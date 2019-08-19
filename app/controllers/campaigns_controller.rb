@@ -1,7 +1,6 @@
 class CampaignsController < ApplicationController
   include Sortable
   respond_to :html, :json
-  layout "admin"
 
   before_action :authenticate_user!
   before_action :authenticate_administrator!, only: [:destroy]

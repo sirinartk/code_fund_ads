@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   include Authorizable
   include Dateable
 
+  layout :layout_by_resource
+
   delegate :instrument, to: ActiveSupport::Notifications
 
   before_action :reload_extensions, unless: -> { Rails.env.production? }
@@ -15,6 +17,16 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   protected
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    elsif current_user
+      "admin"
+    else
+      "application"
+    end
+  end
 
   def device
     @device ||= DeviceDetector.new(request.headers["User-Agent"])
