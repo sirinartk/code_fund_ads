@@ -1,0 +1,30 @@
+@import './components/datatables.scss';
+
+#cf-navbar {
+  background-color: #ffffff;
+}
+
+#cf-breadcrumbs {
+  background-color: #f5f9ff;
+  border-top: 2px solid #15003e;
+  border-bottom: 1px solid #efefef;
+  // padding-bottom: 10px;
+  // padding-top: 10px;
+
+  .uk-breadcrumb > li:nth-child(n + 2)::before {
+    content: '⟩';
+  }
+}
+
+#cf-subnav {
+  border-bottom: 1px solid #efefef;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  .cf-subnav__text-menu,
+  .cf-subnav__icon-menu {
+    margin-bottom: -1px;
+    line-height: 2rem;
+    margin-top: 0px;
+  }
+}

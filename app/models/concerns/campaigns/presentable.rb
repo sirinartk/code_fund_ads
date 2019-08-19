@@ -20,6 +20,10 @@ module Campaigns
       return nil if total_operative_days.zero?
       distance_of_time_in_words(start_date.beginning_of_day, end_date.end_of_day, scope: "datetime.distance_in_words.short")
     end
+    
+    def remaining_budget
+       total_budget.to_f - total_consumed_budget.to_f
+    end
 
     def percentage_complete_by_date
       return 0 if total_operative_days.zero?

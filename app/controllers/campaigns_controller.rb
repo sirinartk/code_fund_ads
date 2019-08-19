@@ -1,23 +1,24 @@
 class CampaignsController < ApplicationController
   include Sortable
+  respond_to :html, :json
+  layout "admin"
 
   before_action :authenticate_user!
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :set_user, only: [:index], if: -> { params[:user_id].present? }
-  before_action :set_campaign_search, only: [:index]
+  # before_action :set_campaign_search, only: [:index]
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
 
   def index
-    campaigns = Campaign.order(order_by).includes(:user, :creative, :organization)
+    @campaigns = Campaign.order(order_by)
     if authorized_user.can_admin_system?
-      campaigns = campaigns.where(user: @user) if @user
+      @campaigns = campaigns.where(user: @user) if @user
     else
-      campaigns = campaigns.where(user: current_user)
+      @campaigns = campaigns.where(user: current_user)
     end
-    campaigns = @campaign_search.apply(campaigns)
-    @pagy, @campaigns = pagy(campaigns)
+    @campaigns = @campaigns.includes(user: :organization)
 
-    render "/campaigns/for_user/index" if @user
+    respond_with @campaigns
   end
 
   def show

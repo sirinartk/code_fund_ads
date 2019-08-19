@@ -24,8 +24,8 @@
         display: inline-block;
         font-family: $font-family-font-awesome-icon;
         font-weight: 900;
-        content: "\f107";
-        margin-right: .75rem;
+        content: '\f107';
+        margin-right: 0.75rem;
         transform: rotate(-180deg);
       }
     }
@@ -41,14 +41,14 @@
   .opened {
     .u-datatable__trigger-icon {
       &::before {
-        content: "\f106";
+        content: '\f106';
       }
     }
   }
 
   &__thead-icon {
     display: block;
-    line-height: .7;
+    line-height: 0.7;
     cursor: pointer;
     color: $gray-400;
 

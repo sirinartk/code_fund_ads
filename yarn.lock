@@ -2872,6 +2872,26 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+datatables.net-dt@^1.10.19:
+  version "1.10.19"
+  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.10.19.tgz#fc668e4942ac6e331be2707975d0f33e01afb60f"
+  integrity sha512-joFHYjLYvr9VnC9Fx3e+8jtXnQ/fP/mPFWt9p0NhZ3Zm5N0jlYyWhJQbnLkihOLuDcDFMaGdBQSvmIdTVdgGyw==
+  dependencies:
+    datatables.net "1.10.19"
+    jquery ">=1.7"
+
+datatables.net-plugins@^1.10.19:
+  version "1.10.19"
+  resolved "https://registry.yarnpkg.com/datatables.net-plugins/-/datatables.net-plugins-1.10.19.tgz#b3767a9a90f9f4ffa3a0c66702a15fd45619d39a"
+  integrity sha512-sVqvp7AP3fiBQi59k2iacLQBP5bOS91+OttAViE2j8g6h/L4mOxZyjiLgWtEnBd6g1yRcdDtsST3kAGC6S6TYg==
+
+datatables.net@1.10.19:
+  version "1.10.19"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.19.tgz#97a1ed41c85e62d61040603481b59790a172dd1f"
+  integrity sha512-+ljXcI6Pj3PTGy5pesp3E5Dr3x3AV45EZe0o1r0gKENN2gafBKXodVnk2ypKwl2tTmivjxbkiqoWnipTefyBTA==
+  dependencies:
+    jquery ">=1.7"
+
 datauri@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/datauri/-/datauri-1.1.0.tgz#c6184ff6b928ede4e41ccc23ab954c7839c4fb39"
@@ -5247,7 +5267,7 @@ jquery-mousewheel@^3.1.13:
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
   integrity sha1-BvAzXxbjU6aV5yBr9QUDy1I6buU=
 
-jquery@>=1.10:
+jquery@>=1.10, jquery@>=1.7:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -9342,6 +9362,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+uikit@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.1.7.tgz#1919b5d7173ef37cfae88e820856677bfd36feaa"
+  integrity sha512-eKVrD6ccMltGpjuphLUTXpqln0Q9aNa0+4HrxEO85i1BD4N2MvpZqsva6gOSZTDnmnen0XeNbPCP+aiU2u2lmw==
+
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -10004,3 +10029,8 @@ yargs@^7.0.0:
     which-module "^1.0.0"
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
+
+zinggrid@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/zinggrid/-/zinggrid-1.1.0.tgz#4a6855d7f5120f121100b0991f219f8cc589be57"
+  integrity sha512-4QobMwyzwOZ6dFY4iql3xB3int/lUffvRLR6pI5V3LaeL3uoO0QJu4rdkOzRaKBAYuCdU/3/io3rM0Tskwnd+w==
