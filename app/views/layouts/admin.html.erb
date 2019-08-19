@@ -5,18 +5,19 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <script src="https://kit.fontawesome.com/ca1224fb66.js"></script>
-
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2019.2.619/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2019.2.619/styles/kendo.silver.min.css" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+    <script src="//kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
   </head>
 
   <body class="">
     <%= render "/@shared/admin/navbar" %>
     <%= render "/@shared/admin/breadcrumbs" %>
     <%= render "/@shared/admin/subnav" %>
-    <%= render "/@shared/admin/actions" if content_for?(:actions) || content_for?(:filters) %>
 
     <%= yield %>
 
