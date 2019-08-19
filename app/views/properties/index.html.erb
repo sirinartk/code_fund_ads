@@ -2,6 +2,10 @@
   <%= render "/@shared/breadcrumbs/properties", class: "active" %>
 <% end %>
 
+<% content_for :subnav do %>
+  <%= render "/@shared/admin/subnav/team" %>
+<% end %>
+
 <% content_for :actions do %>
   <ul class="nav flex-nowrap" style="justify-content: flex-end;">
     <li><%= render "/@shared/date_range_picker" %></li>

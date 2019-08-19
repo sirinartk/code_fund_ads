@@ -243,4 +243,11 @@ module ApplicationHelper
     svg_class = "sparkline sparkline--#{color}#{" sparkline--filled" if filled}"
     render "/@shared/widgets/sparkline_graph", values: values, width: width, height: height, stroke_width: stroke_width, svg_class: svg_class
   end
+
+  # TODO: This is pretty hacky
+  def subnav_li(title, icon, link)
+    active_link_to link, wrap_tag: :li, class_active: 'uk-active' do
+      "<span class=\"uk-visible@s\">#{title}</span><span class=\"uk-hidden@s\" uk-icon=\"icon: #{icon}\"></span>".html_safe
+    end
+  end
 end

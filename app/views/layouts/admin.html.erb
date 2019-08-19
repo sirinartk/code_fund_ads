@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags site: "CodeFund" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="">
+    <%= render "/@shared/admin/navbar" %>
+    <%= render "/@shared/admin/breadcrumbs" %>
+    <%= render "/@shared/admin/subnav" %>
+
+    <%= yield %>
+
+    <%= render "/@shared/admin/offcanvas" %>
+  </body>
+</html>
