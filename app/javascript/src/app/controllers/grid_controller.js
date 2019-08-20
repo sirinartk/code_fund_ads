@@ -5,12 +5,20 @@ export default class extends Controller {
     if (this.grid) return;
     const $grid = $(this.element).kendoGrid({
       sortable: true,
-      filterable: true,
+      reorderable: true,
       groupable: true,
-      pageable: true,
+      resizable: true,
+      filterable: true,
+      columnMenu: true,
+      columns: this.columns,
+      pageable: {
+        alwaysVisible: true,
+        pageSizes: [15, 25, 50, 100],
+      },
     });
     this.grid = $grid.getKendoGrid();
     this.grid.dataSource.pageSize(this.pageSize);
+    // if (this.columns) this.grid.columns = this.columns;
     this.grid.dataSource.page(1);
     if (this.grouping) this.grid.dataSource.group(this.grouping);
   }
@@ -21,5 +29,10 @@ export default class extends Controller {
 
   get grouping() {
     return this.element.dataset.grouping;
+  }
+
+  get columns() {
+    if (this.element.dataset.columns) return JSON.parse(this.element.dataset.columns);
+    else return [];
   }
 }

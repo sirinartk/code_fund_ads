@@ -1,4 +1,4 @@
-@import './components/datatables.scss';
+@import './components/kendo.scss';
 @import './variables';
 @import '~uikit/src/scss/variables-theme.scss';
 
@@ -32,7 +32,7 @@
 }
 
 #cf-actions {
-  margin-top: 1rem;
+  margin: 1rem 0;
   font-weight: bold;
 
   .uk-button {

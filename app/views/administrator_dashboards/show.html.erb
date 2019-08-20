@@ -2,14 +2,12 @@
   <%= render "/@shared/breadcrumbs/dashboard", class: "active" %>
 <% end %>
 
-<% content_for :page_heading do %>
-  <%= page_heading "Administrator", "Dashboard",
-    subtitle: "Overall view of your account",
-    icon: "fas fa-tachometer" %>
+<% content_for :subnav do %>
+  <%= render "/@shared/admin/subnav/team" %>
 <% end %>
 
 <div class="uk-section">
-  <div class="uk-container">
+  <div class="uk-container uk-container-expand">
     <table data-controller="grid" data-page-size="12" data-grouping="organization">
       <thead>
         <tr>
