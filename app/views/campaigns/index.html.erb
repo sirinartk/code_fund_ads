@@ -11,6 +11,6 @@
   <%= render "/@shared/actions/request_campaign" unless authorized_user.can_admin_system? %>
 <% end %>
 
-<main id="content" role="main" class="uk-container uk-padding">
+<main id="content" role="main" class="uk-container uk-container-expand uk-padding uk-padding-remove-top">
   <%= render "/campaigns/table", campaigns: @campaigns %>
 </main>

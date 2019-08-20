@@ -1,5 +1,5 @@
 <%#= subnav_li "Welcome", "plus", "#" %>
-<%#= subnav_li "Overview", "plus", "#" %>
+<%= subnav_li "Overview", "plus", default_dashboard_path(current_user) %>
 <%= subnav_li "Campaigns", "plus", campaigns_path %>
 <%= subnav_li "Properties", "plus", properties_path %>
 <%#= subnav_li "Teams", "plus", "#" %>

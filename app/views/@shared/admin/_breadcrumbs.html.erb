@@ -5,10 +5,10 @@
       <div class="uk-width-expand uk-first-column">
         <ul class="uk-breadcrumb">
           <li>
-            <a href="#" class="uk-text-capitalize uk-text-middle">
+            <%= link_to default_dashboard_path(current_user), class: "uk-text-capitalize uk-text-middle" do %>
               <img width="16" height="16" src="https://cdn2.codefund.app/assets/codefund-logo-square-512.png" />
               CodeFund<span uk-icon="icon: triangle-down"></span>
-            </a>
+            <% end %>
           </li>
           <%= yield :breadcrumbs %>
         </ul>

@@ -1,12 +1,26 @@
-<table class="datatable uk-table uk-table-hover uk-table-striped uk-table-responsive">
+<table data-controller="grid" data-page-size="15" data-columns="<%= [
+    { field: "organization", title: "Team" },
+    { field: "campaign", title: "Name" },
+    { field: "expires", title: "Expires", width: 150, groupable: false },
+    { field: "total_budget", title: "Budget", width: 150, groupable: false },
+    { field: "remaining_budget", title: "Remaining", width: 150, groupable: false },
+    { field: "status", title: "Status", width: 150, filterable: {
+        multi: true,
+        dataSource: [
+          { status: "Pending" },
+          { status: "Active" },
+          { status: "Archived" }
+        ]
+      }}
+  ].to_json %>">
   <thead>
     <tr>
-      <th scope="col">Team</th>
-      <th scope="col">Name</th>
-      <th scope="col">Expires</th>
-      <th scope="col">Budget</th>
-      <th scope="col">Remaining</th>
-      <th scope="col">Status</th>
+      <th>Team</th>
+      <th>Name</th>
+      <th>Expires</th>
+      <th>Budget</th>
+      <th>Remaining</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>

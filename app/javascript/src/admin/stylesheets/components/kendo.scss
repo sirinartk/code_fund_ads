@@ -1,0 +1,40 @@
+$font-size: 14px !default; //	Base font size across all components.
+$font-family: inherit !default; //	Font family across all components.
+$font-family-monospace: Consolas, 'Ubuntu Mono', 'Lucida Console', 'Courier New', monospace !default; //	Font family for monospaced text. Used for styling the code.
+$line-height: (20 / 14) !default; //	Line height used along with $font-size.
+$border-radius: 2px !default; //	Border radius for all components.
+$accent: #ff6358 !default; //	The color that focuses the user attention. Used for primary buttons and for elements of primary importance across the theme.
+$accent-contrast: #ffffff !default; //	The color used along with the accent color denoted by $accent. Used to provide contrast between the background and foreground colors.
+$base-text: #656565 !default; //	The text color of the components' chrome area.
+$base-bg: #f6f6f6 !default; //	The background of the components' chrome area.
+$base-border: rgba(black, 0.08) !default; //	The border color of the components' chrome area.
+$base-gradient: $base-bg, darken($base-bg, 2%) !default; //	The gradient background of the components' chrome area.
+$hovered-text: #656565 !default; //	The text color of hovered items.
+$hovered-bg: #ededed !default; //	The background of hovered items.
+$hovered-border: rgba(black, 0.15) !default; //	The border color of hovered items.
+$hovered-gradient: $hovered-bg, darken($hovered-bg, 2%) !default; //	The gradient background of hovered items.
+$selected-text: $accent-contrast !default; //	The text color of selected items.
+$selected-bg: $accent !default; //	The background of selected items.
+$selected-border: rgba(black, 0.1) !default; //	The border color of selected items.
+$selected-gradient: none !default; //	The gradient background of selected items.
+$error: #f5503e !default; //	The color for error messages and states.
+$warning: #fdce3e !default; //	The color for warning messages and states.
+$success: #5ec232 !default; //	The color for success messages and states.
+$info: #3e80ed !default; //	The color for informational messages and states.
+
+// Buttons
+$button-text: $base-text !default; //	The text color of the buttons.
+$button-bg: $base-bg !default; //	The background of the buttons.
+$button-border: $base-border !default; //	The border color of the buttons.
+$button-gradient: $base-gradient !default; //	The background gradient of the buttons.
+$button-hovered-text: $hovered-text !default; //	The text color of hovered buttons.
+$button-hovered-bg: $hovered-bg !default; //	The background of hovered buttons.
+$button-hovered-border: $hovered-border !default; //	The border color of hovered buttons.
+$button-hovered-gradient: $hovered-gradient !default; //	The background gradient of hovered buttons.
+$button-pressed-text: $selected-text !default; //	The text color of pressed buttons.
+$button-pressed-bg: $selected-bg !default; //	The background color of pressed buttons.
+$button-pressed-border: $selected-border !default; //	The border color of pressed buttons.
+$button-pressed-gradient: none !default; //	The background gradient of pressed buttons.
+$button-focused-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.06) !default; //	The shadow of focused buttons.
+
+@import '~@progress/kendo-theme-default/scss/all';
