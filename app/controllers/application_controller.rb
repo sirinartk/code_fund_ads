@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller?
-      "devise"
-    elsif current_user
+    # if devise_controller?
+    #   "devise"
+    if current_user
       "admin"
     else
       "application"
