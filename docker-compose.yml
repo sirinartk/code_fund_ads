@@ -41,13 +41,6 @@ services:
       - postgres
       - redis
 
-  runner:
-    <<: *backend
-    command: /bin/bash
-    ports:
-      - '3000:3000'
-      - '3002:3002'
-
   rails:
     <<: *backend
     command: bundle exec rails server -b 0.0.0.0
