@@ -8,11 +8,11 @@ end
 
 Rack::Attack.blocklist("sql-injection") do |request|
   Rack::Attack::Fail2Ban.filter("sql-injection-#{request.ip}", maxretry: 1, findtime: 1.hour, bantime: 1.day) do
-    path = CGI.unescape(request.path)
-    path.include?("1=1") ||
-      path.include?("1>1") ||
-      path.include?("const") ||
-      path.include?(" and ") ||
+    path = CGI.unescape(request.path).downcase
+    (path.include?("truncate") && path.include?("table")) ||
+      (path.include?("drop") && path.include?("table")) ||
+      (path.include?("insert") && path.include?("into")) ||
+      (path.include?("update") && path.include?("set")) ||
       (path.include?("select") && path.include?("from"))
   end
 end
