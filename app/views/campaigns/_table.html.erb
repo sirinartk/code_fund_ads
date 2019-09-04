@@ -2,8 +2,8 @@
     { field: "organization", title: "Team" },
     { field: "campaign", title: "Name" },
     { field: "expires", title: "Expires", width: 150, groupable: false },
-    { field: "total_budget", title: "Budget", width: 150, groupable: false },
-    { field: "remaining_budget", title: "Remaining", width: 150, groupable: false },
+    { field: "total_budget", title: "Budget", width: 150, groupable: false, type: "number", format: "{0:c}" },
+    { field: "remaining_budget", title: "Remaining", width: 150, groupable: false, type: "number", format: "{0:c}" },
     { field: "status", title: "Status", width: 150, filterable: {
         multi: true,
         dataSource: [

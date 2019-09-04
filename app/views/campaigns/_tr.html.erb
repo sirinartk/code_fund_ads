@@ -2,7 +2,7 @@
   <td><%= campaign.organization.name %></td>
   <td><%= link_to campaign.name, campaign %></td>
   <td><%= campaign.end_date.strftime("%b %-d, %Y") %></td>
-  <td><%= campaign.total_budget.format %></td>
-  <td><%= campaign.total_remaining_budget.format %></td>
+  <td><%= campaign.total_budget.to_f %></td>
+  <td><%= campaign.total_remaining_budget.to_f %></td>
   <td><%= campaign.status.humanize %></td>
 </tr>

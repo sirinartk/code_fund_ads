@@ -8,31 +8,38 @@
 
 <div class="uk-section">
   <div class="uk-container uk-container-expand">
-    <table data-controller="grid" data-page-size="12" data-grouping="organization">
+    <table data-controller="grid" data-page-size="12" data-columns="<%= [
+        { field: "organization", title: "Team" },
+        { field: "balance", title: "Balance", type: "number", format: "{0:c}" },
+        { field: "campaign", title: "Campaign" },
+        { field: "total_cap", title: "Total Cap", width: 150, groupable: false, type: "number", format: "{0:c}" },
+        { field: "daily_cap", title: "Daily Cap", width: 150, groupable: false, type: "number", format: "{0:c}" },
+        { field: "hourly_cap", title: "Hourly Cap", width: 150, groupable: false, type: "number", format: "{0:c}" },
+        { field: "remaining_budget", title: "Remaining", width: 150, groupable: false, type: "number", format: "{0:c}" },
+        { field: "status", title: "Status", width: 150 }
+      ].to_json %>">
       <thead>
         <tr>
-          <th id="organization"         data-field="organization"         data-type="string" data-sortable="true"  data-filterable="true"  data-groupable="true">Organization</th>
-          <th id="organization_balance" data-field="organization_balance" data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="false">Balance</th>
-          <th id="campaign"             data-field="campaign_icon"        data-type="string" data-sortable="false" data-filterable="false" data-groupable="false">Image</th>
-          <th id="campaign"             data-field="campaign"             data-type="string" data-sortable="true"  data-filterable="true"  data-groupable="false">Campaign</th>
-          <th id="total_budget_cap"     data-field="total_budget_cap"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Total Cap</th>
-          <th id="daily_budget_cap"     data-field="daily_budget_cap"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Daily Cap</th>
-          <th id="hourly_budget_cap"    data-field="hourly_budget_cap"    data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="true">Hourly Cap</th>
-          <th id="remaining_budget"     data-field="remaining_budget"     data-type="number" data-sortable="true"  data-filterable="true"  data-groupable="false">Remaining $</th>
-          <th id="info"                 data-field="info"                 data-type="string" data-sortable="true"  data-filterable="false" data-groupable="true">Info</th>
+          <th>Organization</th>
+          <th>Balance</th>
+          <th>Campaign</th>
+          <th>Total Budget</th>
+          <th>Daily Budget</th>
+          <th>Hourly Budget</th>
+          <th>Remaining Budget</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <% @active_campaigns.each do |campaign| %>
           <tr>
-            <td><%= link_to campaign.organization.analytics_key, organization_path(campaign.organization) %></td>
-            <td><%= campaign.organization.balance %></td>
-            <td><%= image_tag campaign.creative.small_image || "missing-200x200.png" %></td>
+            <td><%= link_to campaign.organization.name, organization_path(campaign.organization) %></td>
+            <td><%= campaign.organization.balance.to_f %></td>
             <td><%= link_to campaign.analytics_key, campaign_path(campaign) %></td>
-            <td><%= campaign.total_budget %></td>
-            <td><%= campaign.daily_budget %></td>
-            <td><%= campaign.hourly_budget %></td>
-            <td><%= campaign.total_remaining_budget %></td>
+            <td><%= campaign.total_budget.to_f %></td>
+            <td><%= campaign.daily_budget.to_f %></td>
+            <td><%= campaign.hourly_budget.to_f %></td>
+            <td><%= campaign.total_remaining_budget.to_f %></td>
             <td>
               <% if campaign.organization.balance < Monetize.parse("$250 USD") %>
                 <span class="uk-label uk-label-danger">Low Balance</span>
@@ -48,22 +55,3 @@
     </table>
   </div>
 </div>
-
-<main id="content" role="main" class="bg-light">
-  <div class="container space-1">
-    <div class="text-center mb-3 mt-5">
-      <span class="u-divider u-divider--xs u-divider--text">Active Premium Campaigns</span>
-    </div>
-
-    <div class="mb-7" id="dashboard-advertiser-cards">
-      <div class="card-deck d-block d-lg-flex card-lg-gutters-2">
-        <% @active_campaigns.each.with_index do |campaign, index| %>
-          <%= render "/campaigns/card", campaign: campaign %>
-          <% if (index + 1) % 3 == 0 %>
-            </div><div class="card-deck d-block d-lg-flex card-lg-gutters-2">
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</main>
