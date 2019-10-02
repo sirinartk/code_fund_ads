@@ -29,7 +29,7 @@
 
     <%= yield :page_heading %>
     <%= yield %>
-    <%= render "/@shared/footer" %>
+    <%= render(FooterComponent, title: "Foo") {} %>
     <%= render "/@shared/secondary" if current_user %>
 
     <!-- Target for dynamically generated modals -->
