@@ -237,7 +237,7 @@ docker-compose build
 docker-compose up -d
 
 # If this is the first time you have built and started the containers
-docker-compose exec app bin/rails db:seed
+bin/docker_db_setup
 
 # To get a bash console inside of the containers
 docker-compose exec app bash

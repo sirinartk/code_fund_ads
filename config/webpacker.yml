@@ -60,7 +60,7 @@ development:
     https: false
     host: <%= ENV["WEBPACKER_DEV_SERVER_HOST"] %>
     port: 3035
-    public: <%= ENV["WEBPACKER_DEV_SERVER_HOST"] %>:3035
+    public: <%= ENV["WEBPACKER_DEV_SERVER_URL"] %>
     hmr: false
     # Inline should be set to true if using HMR
     inline: true
