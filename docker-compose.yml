@@ -27,18 +27,18 @@ services:
       - postgres
       - redis
 
-  migration:
-    <<: *x-app_base
-    image: code_fund_ads_base:latest
-    command: >
-      bash -c "bundle exec rails db:create &&
-      bundle exec rails db:migrate &&
-      bundle exec rails db:setup &&
-      bundle exec rails db:seed"
-    depends_on:
-      - postgres
-      - redis
-      - base
+  # migration:
+  #   <<: *x-app_base
+  #   image: code_fund_ads_base:latest
+  #   command: >
+  #     bash -c "bundle exec rails db:create &&
+  #     bundle exec rails db:migrate &&
+  #     bundle exec rails db:setup &&
+  #     bundle exec rails db:seed"
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #     - base
 
   # App container
   app:
@@ -50,7 +50,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - migration
+      # - migration
       - postgres
       - redis
       - base
