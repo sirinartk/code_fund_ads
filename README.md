@@ -231,16 +231,22 @@ cd /path/to/project
 bin/copy_example_files
 
 # Build the images
-docker-compose --build
+docker-compose build
 
-# Start the containers
-docker-compose up
+# Start the containers in detached mode
+docker-compose up -d
 
 # If this is the first time you have built and started the containers
 docker-compose exec app bin/rails db:seed
 
 # To get a bash console inside of the containers
 docker-compose exec app bash
+
+# To stop your containers
+docker-compose stop
+
+# Stop containers and remove containers, networks, volumes, and images created by up that are not persisted
+docker-compose down
 ```
 
 In order to run tests, you can do the following:

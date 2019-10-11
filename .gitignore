@@ -44,6 +44,5 @@ yarn-debug.log*
 legacy
 lib/tasks/impressions.rake
 /coverage
-config/storage.yml
 config/database.yml
 /coverage/
