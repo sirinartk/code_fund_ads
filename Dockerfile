@@ -59,8 +59,8 @@ WORKDIR $APP_HOME
 ########################################
 COPY . $APP_HOME
 # Required configuration files
-COPY ./config/database.yml.example ./config/database.yml
-COPY ./config/storage.yml.example ./config/storage.yml
+# COPY ./config/database.yml.example ./config/database.yml
+# COPY ./config/storage.yml.example ./config/storage.yml
 RUN chown -R $APP_USER:$APP_USER $APP_HOME && \
     chmod -R 777 /app/bin
 
