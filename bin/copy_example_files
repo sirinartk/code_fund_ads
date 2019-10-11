@@ -11,6 +11,7 @@ EXAMPLE_FILES = [
   "config/storage.yml",
   "config/database.yml",
   ".env",
+  ".env-docker",
 ].freeze
 
 def system!(*args)

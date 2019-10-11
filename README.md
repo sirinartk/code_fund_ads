@@ -162,7 +162,7 @@ git clone https://github.com/gitcoinco/code_fund_ads.git
 cd /path/to/project
 
 # setup environment variables
-cp .env-example .env
+bin/copy_example_files
 
 # If you need a password for your postgres role, uncomment "#export PGPASSWORD='<password>' in the .env file and replace <password> with the role's password
 
@@ -213,6 +213,43 @@ SEE: https://github.com/gitcoinco/code_fund_ads/blob/master/.mert-example.yml
 cd /path/to/project
 ./bin/mert
 ```
+
+## Docker
+
+To run the app using Docker, you will need to do the following:
+
+```sh
+# Make sure you have docker installed on your machine. If not:
+brew cask install docker
+open /Applications/Docker.app
+
+# Clone the project and cd into it if you haven't already
+git clone https://github.com/gitcoinco/code_fund_ads.git
+cd /path/to/project
+
+# setup environment variables
+bin/copy_example_files
+
+# Build the images
+docker-compose --build
+
+# Start the containers
+docker-compose up
+
+# If this is the first time you have built and started the containers
+docker-compose exec app bin/rails db:seed
+
+# To get a bash console inside of the containers
+docker-compose exec app bash
+```
+
+In order to run tests, you can do the following:
+
+```shell
+docker-compose -f docker-test.yml up
+```
+
+Checkout the [Docker documentation](https://docs.docker.com) for more information on interacting with Docker.
 
 ## Code Standards
 
@@ -278,23 +315,6 @@ rails maxmind:download
 
 ```ruby
 DownloadAndExtractMaxmindFileJob.new.download
-```
-
-## Docker
-
-If start fresh or needing to apply a bunch of changes I'd suggest using the build tag so your base docker image isn't built from a bunch of cached layers.
-
-```shell
-docker-compose up --build`
-```
-
-If you've already built the docker image and just wanting to just give the application a test ru;, you just need to bring up all required docker services with the following command:
-`docker-compose up`
-
-In order to run the applications tests in docker you still require a number of services (redis, postgres, database migrations, etc.). To run your application tests, run the following command:
-
-```shell
-docker-compose -f docker-test.yml up
 ```
 
 ## Instrumentation
