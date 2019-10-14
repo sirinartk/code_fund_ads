@@ -58,9 +58,9 @@ development:
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
-    host: <%= ENV["WEBPACKER_DEV_SERVER_HOST"] %>
+    host: <%= ENV.fetch("WEBPACKER_DEV_SERVER_HOST", "localhost") %>
     port: 3035
-    public: <%= ENV["WEBPACKER_DEV_SERVER_URL"] %>
+    public: <%= ENV.fetch("WEBPACKER_DEV_SERVER_URL", "localhost:3035") %>
     hmr: false
     # Inline should be set to true if using HMR
     inline: true
