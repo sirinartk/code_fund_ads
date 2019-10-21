@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   end
   resources :job_postings, except: [:new, :create], path: "/jobs/directory"
 
-  root to: "pages#index"
+  root to: "home#index"
 
   resource :pricing, only: [:show]
   resource :search, only: [:show], controller: :search
