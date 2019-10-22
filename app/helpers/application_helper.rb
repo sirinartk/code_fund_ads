@@ -16,7 +16,9 @@ module ApplicationHelper
   end
 
   def page_heading(action, subject, subtitle: nil, icon: nil)
-    render "/@shared/page_heading", action: action, subject: subject, subtitle: subtitle, icon: icon
+    render "/@shared/page_heading", action: action, subject: subject, subtitle: subtitle, icon: icon unless ENV["REDESIGN"] == "true"
+
+    render "/shared/page_heading", action: action, subject: subject, subtitle: subtitle, icon: icon
   end
 
   def breadcrumbs
@@ -202,7 +204,7 @@ module ApplicationHelper
   end
 
   def details_li(label, &block)
-    return render partial: "/@shared/details_li", locals: {label: label, block: block} unless ENV["REDESIGN"]
+    return render partial: "/@shared/details_li", locals: {label: label, block: block} unless ENV["REDESIGN"] == "true"
 
     render partial: "shared/details_li", locals: {label: label, block: block}
   end
