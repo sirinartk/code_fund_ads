@@ -1,23 +1,29 @@
-<div class="table-responsive">
-  <table class="js-datatable table table-striped">
-    <thead>
-      <tr class="border-bottom">
-        <%= sortable_tr "name" %>
-        <%= tag.th("Advertiser", scope: "col") if authorized_user.can_admin_system? %>
-        <%= sortable_tr "end_date", "Expires" %>
-        <%= sortable_tr "total_budget_cents", "Budget" %>
-        <%= sortable_tr "status" %>
-        <th scope="col">Impressions</th>
-        <th scope="col">CTR</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "/campaigns/tr", collection: campaigns, as: :campaign %>
-    </tbody>
-  </table>
-  <div class="d-flex justify-content-between align-items-center">
-    <span><%== pagy_bootstrap_nav(pagy) if pagy.pages > 1 %></span>
-    <%= pagy_entries(pagy) %>
-  </div>
-</div>
+<table data-controller="grid" data-page-size="15" data-columns="<%= [
+    { field: "organization", title: "Team" },
+    { field: "campaign", title: "Name" },
+    { field: "expires", title: "Expires", width: 150, groupable: false },
+    { field: "total_budget", title: "Budget", width: 150, groupable: false, type: "number", format: "{0:c}" },
+    { field: "remaining_budget", title: "Remaining", width: 150, groupable: false, type: "number", format: "{0:c}" },
+    { field: "status", title: "Status", width: 150, filterable: {
+        multi: true,
+        dataSource: [
+          { status: "Pending" },
+          { status: "Active" },
+          { status: "Archived" }
+        ]
+      }}
+  ].to_json %>">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Name</th>
+      <th>Expires</th>
+      <th>Budget</th>
+      <th>Remaining</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "/campaigns/tr", collection: campaigns, as: :campaign %>
+  </tbody>
+</table>

@@ -785,6 +785,11 @@
     "@nodelib/fs.scandir" "2.1.2"
     fastq "^1.6.0"
 
+"@progress/kendo-theme-bootstrap@^4.3.6":
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-bootstrap/-/kendo-theme-bootstrap-4.3.6.tgz#60ee9034dd4a769a9cd7f9bf1b0c33f14d8242a2"
+  integrity sha512-HLg0w6sOrVfdL+7EEyjXXqicEmFJDOjG14z3MQ/Tf64IPK2djqr6J+YlG7+m2W2exgc4oeZz/cZ/iqnJBs1jvQ==
+
 "@rails/webpacker@^4.0.2":
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-4.0.7.tgz#268571bf974e78ce57eca9fa478f5bd97fd5182c"

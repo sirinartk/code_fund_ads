@@ -12,12 +12,19 @@
     <%= action_cable_meta_tag %>
 
     <link rel="stylesheet" href="/css/all.min.css">
+
     <!-- Compressed Stylesheets -->
     <%= stylesheet_pack_tag 'code_fund_redesign', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <!-- Compressed JavaScripts -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'code_fund_redesign', 'data-turbolinks-track': 'reload' %>
+
+    <% if @kendo %>
+      <!-- Kendo -->
+      <%= stylesheet_pack_tag 'code_fund_kendo', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <script src="//kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
+    <% end %>
   </head>
   <body>
     <%= render 'shared/header' %>

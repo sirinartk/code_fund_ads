@@ -6,6 +6,7 @@ class CampaignsController < ApplicationController
   before_action :set_user, only: [:index], if: -> { params[:user_id].present? }
   before_action :set_campaign_search, only: [:index]
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_kendo, only: [:index]
 
   def index
     campaigns = Campaign.order(order_by).includes(:user, :creative, :organization)
@@ -83,6 +84,10 @@ class CampaignsController < ApplicationController
   end
 
   private
+
+  def set_kendo
+    @kendo = true
+  end
 
   def set_campaign_search
     clear_searches except: :campaign_search

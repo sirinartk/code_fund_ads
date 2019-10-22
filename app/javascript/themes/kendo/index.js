@@ -1,0 +1,1 @@
+import './kendo.scss'
