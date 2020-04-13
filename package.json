@@ -26,7 +26,7 @@
     "flatpickr": "^4.6.3",
     "git": "^0.1.5",
     "github-buttons": "git+https://github.com/ntkme/github-buttons.git",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mousewheel": "^3.1.13",
     "jquery-validation": "^1.19.1",
     "lodash.debounce": "^4.0.8",
