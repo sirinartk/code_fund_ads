@@ -122,7 +122,7 @@ group :test do
   gem "minitest-reporters", require: "minitest/reporters"
   gem "mocha"
   gem "selenium-webdriver"
-  gem "simplecov", require: false
+  gem "simplecov", ">= 0.17.1", require: false
   gem "webdrivers"
   gem "webmock"
 end
