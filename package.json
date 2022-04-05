@@ -31,7 +31,7 @@
     "jquery-validation": "^1.19.1",
     "lodash.debounce": "^4.0.8",
     "medium-zoom": "^1.0.4",
-    "moment": "^2.23.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.23",
     "noty": "^3.2.0-beta",
     "popper.js": "^1.16.0",
