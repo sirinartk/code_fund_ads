@@ -28,7 +28,7 @@
     "github-buttons": "git+https://github.com/ntkme/github-buttons.git",
     "jquery": "^3.4.1",
     "jquery-mousewheel": "^3.1.13",
-    "jquery-validation": "^1.19.1",
+    "jquery-validation": "^1.19.4",
     "lodash.debounce": "^4.0.8",
     "medium-zoom": "^1.0.4",
     "moment": "^2.23.0",
