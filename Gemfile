@@ -103,7 +103,7 @@ group :development do
   gem "annotate"
   gem "letter_opener_web"
   gem "listen", ">= 3.0.5", "< 3.2"
-  gem "mechanize"
+  gem "mechanize", ">= 2.8.5"
   gem "factory_bot_rails"
   gem "meta_request" # RailsPanel Chrome extension
   gem "model_probe"
