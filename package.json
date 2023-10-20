@@ -36,7 +36,7 @@
     "noty": "^3.2.0-beta",
     "popper.js": "^1.16.0",
     "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-preset-env": "^6.6.0",
+    "postcss-preset-env": "^7.0.0",
     "rails-erb-loader": "^5.5.0",
     "select2": "^4.0.6-rc.1",
     "select2-bootstrap-theme": "^0.1.0-beta.10",
