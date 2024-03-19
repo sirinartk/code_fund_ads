@@ -14,7 +14,7 @@
     "@rails/webpacker": "^4.0.2",
     "@typeform/embed": "^0.12.1",
     "animate.css": "^3.7.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "bootstrap-daterangepicker": "^3.0.3",
     "bootstrap-select": "^1.13.12",
