@@ -105,7 +105,7 @@ group :development do
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "mechanize"
   gem "factory_bot_rails"
-  gem "meta_request" # RailsPanel Chrome extension
+  gem "meta_request" , ">= 0.8.0" # RailsPanel Chrome extension
   gem "model_probe"
   gem "ngrok-tunnel"
   gem "rails-erd"
